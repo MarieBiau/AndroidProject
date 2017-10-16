@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import fr.android.app.androidproject.Events.EventsView;
+import fr.android.app.androidproject.Maps.MapsView;
+import fr.android.app.androidproject.PostEvents.PostEventsView;
 import fr.android.app.androidproject.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -63,6 +65,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
+
 }

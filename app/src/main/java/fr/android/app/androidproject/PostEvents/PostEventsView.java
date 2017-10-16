@@ -1,8 +1,16 @@
 package fr.android.app.androidproject.PostEvents;
 
-/**
- * Created by marie on 16/10/17.
- */
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-public class PostEventsView {
+import fr.android.app.androidproject.R;
+
+public class PostEventsView extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_events_view);
+    }
+
 }
