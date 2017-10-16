@@ -25,20 +25,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_view);
 
         //rely textviews to variables
-        textbloc1 = (TextView) findViewById(R.id.textView);
+        textbloc1 = (TextView) findViewById(R.id.textView1);
         textbloc2 = (TextView) findViewById(R.id.textView2);
         textbloc3 = (TextView) findViewById(R.id.textView3);
 
-        //add text to txtview
-        textbloc1.setText("go to part A (Maps)");
-        textbloc2.setText("go to part B (Events");
-        textbloc3.setText("go to part C (PostEvents)");
+        //add text to textviews
+        textbloc1.setText("Go to Maps");
+        textbloc2.setText("Go to Events");
+        textbloc3.setText("Go to PostEvents");
 
         /////////////////////////////////
         //click listener for textviews///
         /////////////////////////////////
 
-        //listener txtview1
+        //listener textview1
         textbloc1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MapsView.class);
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //listener txtview2
+        //listener textview2
         textbloc2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, EventsView.class);
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //listener txtview3
+        //listener textview3
         textbloc3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, PostEventsView.class);

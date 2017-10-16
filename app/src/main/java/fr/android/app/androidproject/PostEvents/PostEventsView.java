@@ -10,7 +10,7 @@ public class PostEventsView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_events_view);
+        setContentView(R.layout.activity_postevents_view);
     }
 
 }
