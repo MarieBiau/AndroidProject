@@ -15,7 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Maps.MapsView"></activity>
         <activity android:name=".Events.EventsView"></activity>
+        <activity android:name=".PostEvents.PostEventsView"></activity>
     </application>
 
 </manifest>

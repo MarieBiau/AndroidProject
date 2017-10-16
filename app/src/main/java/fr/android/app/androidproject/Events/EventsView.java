@@ -32,4 +32,5 @@ public class EventsView extends AppCompatActivity {
         });
 
     }
+
 }

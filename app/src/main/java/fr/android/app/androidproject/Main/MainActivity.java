@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import fr.android.app.androidproject.Events.EventsView;
+import fr.android.app.androidproject.Maps.MapsView;
+import fr.android.app.androidproject.PostEvents.PostEventsView;
 import fr.android.app.androidproject.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         //listener txtview1
         textbloc1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, EventsView.class);
+                Intent intent = new Intent(MainActivity.this, MapsView.class);
 
                 startActivity(intent);
             }
@@ -57,12 +59,12 @@ public class MainActivity extends AppCompatActivity {
         //listener txtview3
         textbloc3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, EventsView.class);
+                Intent intent = new Intent(MainActivity.this, PostEventsView.class);
 
                 startActivity(intent);
             }
         });
 
-
     }
+
 }
