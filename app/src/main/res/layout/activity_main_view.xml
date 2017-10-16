@@ -30,7 +30,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:allowUndo="false"
                 android:gravity="center"
                 android:text="TextView" />
         </LinearLayout>
@@ -43,12 +42,12 @@
             android:layout_height="142dp">
 
             <TextView
-                android:text="TextView"
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/textView2"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:layout_weight="1" />
+                android:text="TextView" />
         </LinearLayout>
 
         <LinearLayout
@@ -62,9 +61,9 @@
                 android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:id="@+id/textView3"
-                android:gravity="center"
-                android:layout_weight="1" />
+                android:gravity="center" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
