@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
         //add text to txtview
         textbloc1.setText("go to part A");
-        textbloc1.setText("go to part B");
-        textbloc1.setText("go to part C");
+        textbloc2.setText("go to part B");
+        textbloc3.setText("go to part C");
 
         /////////////////////////////////
         //click listener for textviews///
