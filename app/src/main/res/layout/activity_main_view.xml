@@ -65,5 +65,7 @@
                 android:id="@+id/textView3"
                 android:gravity="center" />
         </LinearLayout>
+
     </LinearLayout>
+
 </RelativeLayout>
