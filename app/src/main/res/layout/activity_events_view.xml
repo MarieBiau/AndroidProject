@@ -30,18 +30,79 @@
                 android:gravity="center"
                 android:text="Button" />
         </LinearLayout>
-        
+
         <ScrollView
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="377dp">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/abutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/bbutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/cbutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/dbutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/ebutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/fbutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Button" />
+
+                <Button
+                    android:id="@+id/gbutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Button" />
+            </LinearLayout>
 
         </ScrollView>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
             android:layout_height="52dp">
             <Button
                 android:id="@+id/backbutton"
@@ -53,4 +114,5 @@
         </LinearLayout>
 
     </LinearLayout>
+
 </RelativeLayout>
