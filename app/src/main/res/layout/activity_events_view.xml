@@ -22,14 +22,35 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="52dp">
-
             <Button
-                android:text="Button"
+                android:id="@+id/plusbutton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/backbutton"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:layout_weight="1" />
+                android:text="Button" />
         </LinearLayout>
+        
+        <ScrollView
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="377dp">
+
+        </ScrollView>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="52dp">
+            <Button
+                android:id="@+id/backbutton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Button" />
+        </LinearLayout>
+
     </LinearLayout>
 </RelativeLayout>
