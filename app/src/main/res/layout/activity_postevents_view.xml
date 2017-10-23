@@ -10,7 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="fr.android.app.androidproject.Events.EventsView">
 
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -23,7 +22,6 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="52dp">
-
             <Button
                 android:text="Button"
                 android:layout_width="match_parent"
@@ -32,6 +30,6 @@
                 android:gravity="center"
                 android:layout_weight="1" />
         </LinearLayout>
-    </LinearLayout>
 
+    </LinearLayout>
 </RelativeLayout>
