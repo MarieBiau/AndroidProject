@@ -20,7 +20,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Button" />
+                android:text="+" />
         </RelativeLayout>
 
         <ScrollView
@@ -104,7 +104,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Button" />
+                android:text="Back" />
         </RelativeLayout>
 
 </RelativeLayout>

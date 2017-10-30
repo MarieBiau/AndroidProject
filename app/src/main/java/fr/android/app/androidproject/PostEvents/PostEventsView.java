@@ -20,9 +20,7 @@ public class PostEventsView extends AppCompatActivity {
 
         backButton = (Button) findViewById(R.id.backbutton);
 
-
         backButton.setText("Back");
-
 
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
