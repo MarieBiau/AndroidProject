@@ -1,6 +1,6 @@
 package fr.android.app.androidproject.Events;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Event {
 
@@ -9,10 +9,11 @@ public class Event {
     private Date date;
     private float location_latitude;
     private float location_longitude;
+    private static int cpt;
 
-    public Event (int id, String name, Date date, float location_latitude, float location_longitude) {
+    public Event (String name, Date date, float location_latitude, float location_longitude) {
         super();
-        this.id = id;
+        this.id = cpt++;
         this.name = name;
         this.date = date;
         this.location_latitude = location_latitude;

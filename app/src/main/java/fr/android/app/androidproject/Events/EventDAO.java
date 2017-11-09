@@ -2,9 +2,9 @@ package fr.android.app.androidproject.Events;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 
 import fr.android.app.androidproject.DAOBase;
-import fr.android.app.androidproject.DatabaseHandler;
 
 import static fr.android.app.androidproject.DatabaseHandler.EVENT_ID;
 import static fr.android.app.androidproject.DatabaseHandler.EVENT_NAME;
@@ -30,6 +30,11 @@ public class EventDAO extends DAOBase {
 
     public boolean deleteEvent(Event event) {
         return mDb.delete(EVENT_TABLE_NAME, EVENT_ID + " = ?", new String[] {String.valueOf(event.getId())}) > 0;
+    }
+
+    public Cursor getAllEventsCursor() {
+        Cursor cursor = mDb.rawQuery("select " + "id as _id, name, date" + " from " + EVENT_TABLE_NAME, null);
+        return cursor;
     }
 
 }

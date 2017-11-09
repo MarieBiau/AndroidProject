@@ -17,7 +17,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public static final String EVENT_TABLE_CREATE =
             "CREATE TABLE " + EVENT_TABLE_NAME + " (" +
-                    EVENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    EVENT_ID + " INTEGER PRIMARY KEY, " +
                     EVENT_NAME + " TEXT NOT NULL, " +
                     EVENT_DATE + " DATE NOT NULL, " +
                     EVENT_LOCATION_LATITUDE + " FLOAT NOT NULL, " +
