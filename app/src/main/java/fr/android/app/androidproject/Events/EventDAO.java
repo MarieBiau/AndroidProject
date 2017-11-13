@@ -22,7 +22,7 @@ public class EventDAO extends DAOBase {
     public boolean createEvent(Event event) {
         ContentValues values = new ContentValues();
         values.put(EVENT_NAME, event.getName());
-        values.put(EVENT_DATE, String.valueOf(event.getDate()));
+        values.put(EVENT_DATE, event.getDate());
         values.put(EVENT_LOCATION_LATITUDE, event.getLocation_latitude());
         values.put(EVENT_LOCATION_LONGITUDE, event.getLocation_longitude());
         return mDb.insert(EVENT_TABLE_NAME, null, values) > 0;
@@ -33,7 +33,8 @@ public class EventDAO extends DAOBase {
     }
 
     public Cursor getAllEventsCursor() {
-        Cursor cursor = mDb.rawQuery("select " + "id as _id, name, date" + " from " + EVENT_TABLE_NAME, null);
+        Cursor cursor = mDb.rawQuery
+                ("select " + "id as _id, name, date" + " from " + EVENT_TABLE_NAME + "order by date", null);
         return cursor;
     }
 

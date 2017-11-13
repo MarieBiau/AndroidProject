@@ -1,25 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/id"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="20dp" />
-
-    <TextView
         android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="20dp" />
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="7dp"
+        android:layout_centerVertical="true"
+        android:textSize="17dp" />
 
     <TextView
         android:id="@+id/date"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="20dp" />
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/name"
+        android:layout_centerVertical="true"
+        android:textSize="17dp"
+        android:textAlignment="center"/>
 
-</LinearLayout>
+    <Button style="@style/Widget.AppCompat.Button.Borderless"
+        android:id="@+id/see_on_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/date"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="14dp"
+        android:textAlignment="center"
+        android:text="See on map"/>
+
+</RelativeLayout>

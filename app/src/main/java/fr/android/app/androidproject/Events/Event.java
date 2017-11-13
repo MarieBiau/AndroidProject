@@ -1,17 +1,17 @@
 package fr.android.app.androidproject.Events;
 
-import java.util.Date;
+import java.text.DateFormat;
 
 public class Event {
 
     private int id;
     private String name;
-    private Date date;
+    private String date;
     private float location_latitude;
     private float location_longitude;
     private static int cpt;
 
-    public Event (String name, Date date, float location_latitude, float location_longitude) {
+    public Event (String name, String date, float location_latitude, float location_longitude) {
         super();
         this.id = cpt++;
         this.name = name;
@@ -37,11 +37,11 @@ public class Event {
         this.name = name;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
