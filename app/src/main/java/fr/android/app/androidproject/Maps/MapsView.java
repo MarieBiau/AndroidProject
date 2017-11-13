@@ -51,7 +51,6 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
             Toast.makeText(this, "Error occured. Check your internet connection", Toast.LENGTH_SHORT).show();
         }
 
-
         // text for building:
         buildingtext = (TextView) findViewById(R.id.buildingtext);
         buildingtext.setText("Choose a building :");
@@ -69,9 +68,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         buildingchoice.setAdapter(adapter);
-
     }
-
 
     /**
      * Manipulates the map once available.
@@ -362,7 +359,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
         });
     }
 
-    //check if network is available to have  location
+    //check if network is available to have location
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

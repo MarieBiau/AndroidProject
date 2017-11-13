@@ -13,7 +13,9 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="51dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="-10dp"
             android:background="@android:drawable/alert_light_frame">
 
             <TextView
@@ -30,14 +32,13 @@
                 android:gravity="center"
                 android:layout_weight="1" />
 
-
-
         </LinearLayout>
 
         <Button
+            android:id="@+id/searchbutton"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:id="@+id/searchbutton" />
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"/>
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:map="http://schemas.android.com/apk/res-auto"
