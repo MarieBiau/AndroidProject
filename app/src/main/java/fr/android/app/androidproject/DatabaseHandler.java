@@ -18,8 +18,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String EVENT_TABLE_CREATE =
             "CREATE TABLE " + EVENT_TABLE_NAME + " (" +
                     EVENT_ID + " INTEGER PRIMARY KEY, " +
-                    EVENT_NAME + " TEXT NOT NULL, " +
-                    EVENT_DATE + " DATE NOT NULL, " +
+                    EVENT_NAME + " VARCHAR(50) NOT NULL, " +
+                    EVENT_DATE + " VARCHAR(50) NOT NULL, " +
                     EVENT_LOCATION_LATITUDE + " FLOAT NOT NULL, " +
                     EVENT_LOCATION_LONGITUDE + " FLOAT NOT NULL);";
     public static final String EVENT_TABLE_DROP = "DROP TABLE IF EXISTS " + EVENT_TABLE_NAME;

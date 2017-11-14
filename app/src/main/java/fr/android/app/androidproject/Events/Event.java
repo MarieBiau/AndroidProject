@@ -1,6 +1,6 @@
 package fr.android.app.androidproject.Events;
 
-import java.text.DateFormat;
+import java.util.Date;
 
 public class Event {
 

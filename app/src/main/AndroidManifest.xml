@@ -30,6 +30,7 @@
             android:name=".Maps.MapsView"
             android:label="@string/title_activity_maps_view" />
         <activity android:name=".Events.EventsView" />
+        <activity android:name=".Events.EventsActivity" />
         <activity android:name=".PostEvents.PostEventsView" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
