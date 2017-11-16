@@ -23,7 +23,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,9 +37,9 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
     LatLng choicelatlng;
     String choiceview;
     Marker pos;
-    List<String> buildingList = Arrays.asList("1","2","3","4","5","6","7","8","9","10","11","12","13",
-                                "14","15","16","17","18","19","20","21","22","23","24","25","26","27",
-                                "28");
+    public static List<String> buildingList = Arrays.asList("1","2","3","4","5","6","7","8","9","10","11","12","13",
+            "14","15","16","17","18","19","20","21","22","23","24","25","26","27",
+            "28");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +59,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
         buildingtext.setText("Choose a building :");
         //spinner configuration
         buildingchoice = (Spinner) findViewById(R.id.building);
-        ArrayAdapter adapter = new ArrayAdapter(
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
                 buildingList

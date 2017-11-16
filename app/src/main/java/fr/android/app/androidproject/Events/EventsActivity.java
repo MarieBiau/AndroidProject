@@ -5,23 +5,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
 import fr.android.app.androidproject.Main.MainActivity;
+import fr.android.app.androidproject.Maps.MapsView;
 import fr.android.app.androidproject.R;
 
 public class EventsActivity extends AppCompatActivity {
 
     Button okButton;
     Button backButton;
-    Calendar myCalendar;
+    EditText editTextName;
     EditText editTextDate;
+    Spinner buildingChoice;
+    Calendar myCalendar;
     DateFormat shortDateFormatEN = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, new Locale("EN","en"));
     DatePickerDialog.OnDateSetListener date;
 
@@ -35,6 +40,11 @@ public class EventsActivity extends AppCompatActivity {
         okButton.setText("OK");
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                EventDAO eventDAO = new EventDAO(getApplicationContext());
+                eventDAO.open();
+                //Ne fonctionne pas
+                Event a = new Event(editTextName.getText().toString(),shortDateFormatEN.format(editTextDate.getText()),0,0);
+                eventDAO.createEvent(a);
                 Intent intent = new Intent(EventsActivity.this, EventsView.class);
                 startActivity(intent);
             }
@@ -49,6 +59,9 @@ public class EventsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        /*Name editText*/
+        editTextName = (EditText) findViewById(R.id.name);
 
         /*DatePicker*/
         myCalendar = Calendar.getInstance();
@@ -70,11 +83,16 @@ public class EventsActivity extends AppCompatActivity {
             }
         });
 
-        /*ViewList with all created events*/
-        //EventDAO eventDAO = new EventDAO(getApplicationContext());
-        //eventDAO.open();
-        //Event a = new Event("a",shortDateFormatEN.format(new Date()),0,0);
-        //eventDAO.createEvent(a);
+        /*Location spinner*/
+        buildingChoice = (Spinner) findViewById(R.id.buildingName);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_item,
+                MapsView.buildingList
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        buildingChoice.setAdapter(adapter);
+
     }
 }
 
