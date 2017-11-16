@@ -23,13 +23,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
-            android:hint="Event Name"/>
+            android:hint="Event name"
+            android:inputType="textNoSuggestions"
+            android:background="@null"/>
 
-        <TextView
+        <EditText
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5" />
+            android:layout_weight="1.5"
+            android:hint="Event date"
+            android:focusable="false"
+            android:clickable="true"
+            android:longClickable="false"
+            android:background="@null"/>
 
         <TextView
             android:id="@+id/location"
