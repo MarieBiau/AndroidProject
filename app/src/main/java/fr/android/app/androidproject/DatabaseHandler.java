@@ -19,7 +19,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     EVENT_ID + " INTEGER PRIMARY KEY, " +
                     EVENT_NAME + " VARCHAR(50) NOT NULL, " +
                     EVENT_DATE + " VARCHAR(50) NOT NULL, " +
-                    EVENT_BUILDING + " VARCHAR(50) NOT NULL;";
+                    EVENT_BUILDING + " VARCHAR(50) NOT NULL);";
     public static final String EVENT_TABLE_DROP = "DROP TABLE IF EXISTS " + EVENT_TABLE_NAME;
 
     public DatabaseHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {

@@ -1,14 +1,12 @@
 package fr.android.app.androidproject.Events;
 
-import java.util.Date;
-
 public class Event {
 
     private int id;
     private String name;
     private String date;
     private String building;
-    private static int cpt;
+    public static int cpt;
 
     public Event (String name, String date, String building) {
         super();
