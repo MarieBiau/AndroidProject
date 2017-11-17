@@ -31,8 +31,7 @@ public class EventDAO extends DAOBase {
     }
 
     public Cursor getAllEventsCursor() {
-        return mDb.rawQuery
-                ("select " + "id as _id, name, date" + " from " + EVENT_TABLE_NAME + " order by date", null);
+        return mDb.rawQuery("select " + "id as _id, name, date" + " from " + EVENT_TABLE_NAME + " order by date", null);
     }
 
 }

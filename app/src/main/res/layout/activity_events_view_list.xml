@@ -5,20 +5,20 @@
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="100dp"
+        android:layout_width="92dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="7dp"
         android:layout_centerVertical="true"
-        android:textSize="17dp"
+        android:textSize="17sp"
         android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/date"
-        android:layout_width="75dp"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/name"
+        android:layout_toEndOf="@+id/name"
         android:layout_centerVertical="true"
-        android:textSize="17dp"
+        android:textSize="17sp"
         android:textAlignment="center"/>
 
     <Button style="@style/Widget.AppCompat.Button.Borderless"
@@ -26,9 +26,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/date"
+        android:layout_toEndOf="@+id/date"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:textAlignment="center"
         android:text="See on map"/>
 

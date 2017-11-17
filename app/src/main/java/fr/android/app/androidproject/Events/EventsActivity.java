@@ -1,6 +1,7 @@
 package fr.android.app.androidproject.Events;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +11,9 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -27,8 +29,9 @@ public class EventsActivity extends AppCompatActivity {
     EditText editTextDate;
     Spinner buildingChoice;
     Calendar myCalendar;
-    DateFormat shortDateFormatEN = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, new Locale("EN","en"));
+    SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
     DatePickerDialog.OnDateSetListener date;
+    TimePickerDialog.OnTimeSetListener time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +73,8 @@ public class EventsActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                editTextDate.setText(shortDateFormatEN.format(myCalendar.getTime()));
+                editTextDate.setText(sdfDate.format(myCalendar.getTime()));
+                timePicker();
             }
         };
         editTextDate.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +96,20 @@ public class EventsActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         buildingChoice.setAdapter(adapter);
 
+    }
+
+    /*TimePicker*/
+    private void timePicker() {
+        time = new TimePickerDialog.OnTimeSetListener() {
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                myCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                myCalendar.set(Calendar.MINUTE, minute);
+                editTextDate.setText(sdfDate.format(myCalendar.getTime()));
+            }
+        };
+        new TimePickerDialog(EventsActivity.this, time,
+                myCalendar.get(Calendar.HOUR_OF_DAY),
+                myCalendar.get(Calendar.MINUTE),false).show();
     }
 }
 
