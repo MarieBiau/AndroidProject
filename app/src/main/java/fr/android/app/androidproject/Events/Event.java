@@ -7,17 +7,15 @@ public class Event {
     private int id;
     private String name;
     private String date;
-    private float location_latitude;
-    private float location_longitude;
+    private String building;
     private static int cpt;
 
-    public Event (String name, String date, float location_latitude, float location_longitude) {
+    public Event (String name, String date, String building) {
         super();
         this.id = cpt++;
         this.name = name;
         this.date = date;
-        this.location_latitude = location_latitude;
-        this.location_longitude = location_longitude;
+        this.building = building;
     }
 
     /* Getters and Setters */
@@ -45,20 +43,12 @@ public class Event {
         this.date = date;
     }
 
-    public float getLocation_latitude() {
-        return location_latitude;
+    public String getBuilding() {
+        return building;
     }
 
-    public void setLocation_latitude(float location_latitude) {
-        this.location_latitude = location_latitude;
-    }
-
-    public float getLocation_longitude() {
-        return location_longitude;
-    }
-
-    public void setLocation_longitude(float location_longitude) {
-        this.location_longitude = location_longitude;
+    public void setBuilding(String building) {
+        this.building = building;
     }
 
 }

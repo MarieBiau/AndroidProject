@@ -23,6 +23,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,34 +38,61 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
     LatLng choicelatlng;
     String choiceview;
     Marker pos;
-    public static List<String> buildingList = Arrays.asList("1","2","3","4","5","6","7","8","9","10","11","12","13",
-            "14","15","16","17","18","19","20","21","22","23","24","25","26","27",
-            "28");
+    public static List<String> buildingList = Arrays.asList("1","2","3","4","5","6","7","8","9","10",
+            "11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28");
+    public static ArrayList<LatLng> positionList = new ArrayList<LatLng>() {{
+        add(new LatLng(55.653562, 12.139533));
+        add(new LatLng(55.652920, 12.140992));
+        add(new LatLng(55.653610, 12.140928));
+        add(new LatLng(55.653048, 12.137906));
+        add(new LatLng(55.652726, 12.138222));
+        add(new LatLng(55.653047, 12.138613));
+        add(new LatLng(55.652732, 12.138935));
+        add(new LatLng(55.653053, 12.139343));
+        add(new LatLng(55.652750, 12.139729));
+        add(new LatLng(55.653028, 12.140029));
+        add(new LatLng(55.652743, 12.140447));
+        add(new LatLng(55.652386, 12.140222));
+        add(new LatLng(55.651998, 12.137101));
+        add(new LatLng(55.651986, 12.137892));
+        add(new LatLng(55.652361, 12.137828));
+        add(new LatLng(55.652461, 12.136587));
+        add(new LatLng(55.652446, 12.137172));
+        add(new LatLng(55.652773, 12.137167));
+        add(new LatLng(55.653091, 12.137183));
+        add(new LatLng(55.653085, 12.136652));
+        add(new LatLng(55.653097, 12.136078));
+        add(new LatLng(55.653120, 12.135499));
+        add(new LatLng(55.652787, 12.135489));
+        add(new LatLng(55.652463, 12.135465));
+        add(new LatLng(55.652182, 12.135009));
+        add(new LatLng(55.651674, 12.136130));
+        add(new LatLng(55.651501, 12.138780));
+        add(new LatLng(55.652442, 12.138995));
+    }};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_view);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+
+        /*Obtain the SupportMapFragment and get notified when the map is ready to be used*/
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         if (isNetworkAvailable()) {
             mapFragment.getMapAsync(this);
-        }else{
+        } else {
             Toast.makeText(this, "Error occured. Check your internet connection", Toast.LENGTH_SHORT).show();
         }
 
-        //text for building:
+        /*Building text and spinner*/
         buildingtext = (TextView) findViewById(R.id.buildingtext);
         buildingtext.setText("Choose a building :");
-        //spinner configuration
         buildingchoice = (Spinner) findViewById(R.id.building);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
                 buildingList
         );
-
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         buildingchoice.setAdapter(adapter);
     }
@@ -82,18 +110,17 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        /*Add a marker in Sydney and move the camera*/
         LatLng ruc = new LatLng(55.652622, 12.139827);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ruc));
-        mMap.animateCamera( CameraUpdateFactory.zoomTo( 15.4f ) );
-        // easy way to show position
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15.4f));
         // TODO: 30/10/2017 use API from google to get latlng 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
         }
 
-        // search button
+        /*Search button*/
         searchbtn = (Button) findViewById(R.id.searchbutton);
         searchbtn.setText("search");
         searchbtn.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +132,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
                     if (pos != null){
                         pos.remove();
                     }
-                    choicelatlng = new LatLng(55.653562, 12.139533);
+                    choicelatlng = positionList.get(0);
                     choiceview = "1";
                     pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
 
@@ -114,7 +141,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
                     if (pos != null){
                         pos.remove();
                     }
-                    choicelatlng = new LatLng(55.652920, 12.140992);
+                    choicelatlng = positionList.get(1);
                     choiceview = "1";
                     pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
 
@@ -123,7 +150,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
                     if (pos != null){
                         pos.remove();
                     }
-                    choicelatlng = new LatLng(55.653610, 12.140928);
+                    choicelatlng = positionList.get(2);
                     choiceview = "1";
                     pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
 
@@ -132,7 +159,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
                     if (pos != null){
                         pos.remove();
                     }
-                    choicelatlng = new LatLng(55.653048, 12.137906);
+                    choicelatlng = positionList.get(3);
                     choiceview = "1";
                     pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
 
@@ -141,7 +168,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
                     if (pos != null){
                         pos.remove();
                     }
-                    choicelatlng = new LatLng(55.652726, 12.138222);
+                    choicelatlng = positionList.get(4);
                     choiceview = "1";
                     pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
 
@@ -150,7 +177,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
                     if (pos != null){
                         pos.remove();
                     }
-                    choicelatlng = new LatLng(55.653047, 12.138613);
+                    choicelatlng = positionList.get(5);
                     choiceview = "1";
                     pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
 
@@ -159,7 +186,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
                     if (pos != null){
                         pos.remove();
                     }
-                    choicelatlng = new LatLng(55.652732, 12.138935);
+                    choicelatlng = positionList.get(6);
                     choiceview = "1";
                     pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
 
@@ -168,7 +195,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
                     if (pos != null){
                         pos.remove();
                     }
-                    choicelatlng = new LatLng(55.653053, 12.139343);
+                    choicelatlng = positionList.get(7);
                     choiceview = "1";
                     pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
 
@@ -177,7 +204,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
                     if (pos != null){
                         pos.remove();
                     }
-                    choicelatlng = new LatLng(55.652750, 12.139729);
+                    choicelatlng = positionList.get(8);
                     choiceview = "1";
                     pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
 
@@ -358,7 +385,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
         });
     }
 
-    //check if network is available to have location
+    /*Check if network is available to get location*/
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

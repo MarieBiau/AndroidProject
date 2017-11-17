@@ -12,16 +12,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String EVENT_ID = "id";
     public static final String EVENT_NAME = "name";
     public static final String EVENT_DATE = "date";
-    public static final String EVENT_LOCATION_LATITUDE = "location_latitude";
-    public static final String EVENT_LOCATION_LONGITUDE = "location_longitude";
+    public static final String EVENT_BUILDING = "building";
 
     public static final String EVENT_TABLE_CREATE =
             "CREATE TABLE " + EVENT_TABLE_NAME + " (" +
                     EVENT_ID + " INTEGER PRIMARY KEY, " +
                     EVENT_NAME + " VARCHAR(50) NOT NULL, " +
                     EVENT_DATE + " VARCHAR(50) NOT NULL, " +
-                    EVENT_LOCATION_LATITUDE + " FLOAT NOT NULL, " +
-                    EVENT_LOCATION_LONGITUDE + " FLOAT NOT NULL);";
+                    EVENT_BUILDING + " VARCHAR(50) NOT NULL;";
     public static final String EVENT_TABLE_DROP = "DROP TABLE IF EXISTS " + EVENT_TABLE_NAME;
 
     public DatabaseHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {

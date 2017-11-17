@@ -43,7 +43,7 @@ public class EventsActivity extends AppCompatActivity {
                 EventDAO eventDAO = new EventDAO(getApplicationContext());
                 eventDAO.open();
                 //Ne fonctionne pas
-                Event a = new Event(editTextName.getText().toString(),shortDateFormatEN.format(editTextDate.getText()),0,0);
+                Event a = new Event(editTextName.getText().toString(),shortDateFormatEN.format(editTextDate.getText()),"a");
                 eventDAO.createEvent(a);
                 Intent intent = new Intent(EventsActivity.this, EventsView.class);
                 startActivity(intent);

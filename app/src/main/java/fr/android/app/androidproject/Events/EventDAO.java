@@ -9,8 +9,7 @@ import fr.android.app.androidproject.DAOBase;
 import static fr.android.app.androidproject.DatabaseHandler.EVENT_ID;
 import static fr.android.app.androidproject.DatabaseHandler.EVENT_NAME;
 import static fr.android.app.androidproject.DatabaseHandler.EVENT_DATE;
-import static fr.android.app.androidproject.DatabaseHandler.EVENT_LOCATION_LATITUDE;
-import static fr.android.app.androidproject.DatabaseHandler.EVENT_LOCATION_LONGITUDE;
+import static fr.android.app.androidproject.DatabaseHandler.EVENT_BUILDING;
 import static fr.android.app.androidproject.DatabaseHandler.EVENT_TABLE_NAME;
 
 public class EventDAO extends DAOBase {
@@ -23,8 +22,7 @@ public class EventDAO extends DAOBase {
         ContentValues values = new ContentValues();
         values.put(EVENT_NAME, event.getName());
         values.put(EVENT_DATE, event.getDate());
-        values.put(EVENT_LOCATION_LATITUDE, event.getLocation_latitude());
-        values.put(EVENT_LOCATION_LONGITUDE, event.getLocation_longitude());
+        values.put(EVENT_BUILDING, event.getBuilding());
         return mDb.insert(EVENT_TABLE_NAME, null, values) > 0;
     }
 
