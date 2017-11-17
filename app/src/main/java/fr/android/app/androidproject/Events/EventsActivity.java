@@ -42,8 +42,7 @@ public class EventsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EventDAO eventDAO = new EventDAO(getApplicationContext());
                 eventDAO.open();
-                //La date ne fonctionne pas (not String)
-                Event a = new Event(editTextName.getText().toString(), shortDateFormatEN.format(editTextDate.getText()), "a");
+                Event a = new Event(editTextName.getText().toString(), editTextDate.getText().toString(), buildingChoice.getSelectedItem().toString());
                 eventDAO.createEvent(a);
                 Intent intent = new Intent(EventsActivity.this, EventsView.class);
                 startActivity(intent);
