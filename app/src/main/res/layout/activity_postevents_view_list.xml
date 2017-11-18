@@ -24,7 +24,7 @@
         android:textAlignment="center"/>
 
     <Button style="@style/Widget.AppCompat.Button.Borderless"
-        android:id="@+id/add_note_or_pictures"
+        android:id="@+id/add_note_or_pictures_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/date"

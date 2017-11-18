@@ -1,11 +1,13 @@
 package fr.android.app.androidproject.PostEvents;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -22,6 +24,8 @@ import static fr.android.app.androidproject.DatabaseHandler.EVENT_NAME;
 public class PostEventsView extends ListActivity {
 
     Button backButton;
+    Button addNoteOrPicturesButton;
+    View postEventsView;
     ListView mListView;
     PostEventDAO postEventDAO;
     Cursor postEventsCursor;
@@ -38,6 +42,18 @@ public class PostEventsView extends ListActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(PostEventsView.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        /*Add note or pictures button doesn't work*/
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        View rowView = inflater.inflate(R.layout.activity_postevents_view_list, null);
+        addNoteOrPicturesButton = (Button) rowView.findViewById(R.id.add_note_or_pictures_button);
+        addNoteOrPicturesButton.setText("Add note or pictures");
+        addNoteOrPicturesButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(PostEventsView.this, AddNoteOrPicturesActivity.class);
                 startActivity(intent);
             }
         });
