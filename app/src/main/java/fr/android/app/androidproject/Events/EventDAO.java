@@ -26,8 +26,8 @@ public class EventDAO extends DAOBase {
         return mDb.insert(EVENT_TABLE_NAME, null, values) > 0;
     }
 
-    public boolean deleteEvent(Event event) {
-        return mDb.delete(EVENT_TABLE_NAME, EVENT_ID + " = ?", new String[] {String.valueOf(event.getId())}) > 0;
+    public boolean deleteEvent(int id) {
+        return mDb.delete(EVENT_TABLE_NAME, EVENT_ID + " = ?", new String[] {String.valueOf(id)}) > 0;
     }
 
     public Cursor getAllEventsCursor() {
