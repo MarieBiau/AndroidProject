@@ -24,7 +24,7 @@
         android:textAlignment="center"/>
 
     <Button style="@style/Widget.AppCompat.Button.Borderless"
-        android:id="@+id/see_on_map"
+        android:id="@+id/add_note_or_pictures"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/date"
@@ -33,6 +33,6 @@
         android:layout_centerVertical="true"
         android:textSize="14sp"
         android:textAlignment="center"
-        android:text="See on map"/>
+        android:text="Add note or pictures"/>
 
 </RelativeLayout>
