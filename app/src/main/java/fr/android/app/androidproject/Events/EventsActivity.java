@@ -17,7 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import fr.android.app.androidproject.Main.MainActivity;
 import fr.android.app.androidproject.Maps.MapsView;
 import fr.android.app.androidproject.R;
 
@@ -57,7 +56,7 @@ public class EventsActivity extends AppCompatActivity {
         backButton.setText("Back");
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(EventsActivity.this, MainActivity.class);
+                Intent intent = new Intent(EventsActivity.this, EventsView.class);
                 startActivity(intent);
             }
         });
