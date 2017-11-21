@@ -12,6 +12,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -42,12 +43,16 @@ public class EventsActivity extends AppCompatActivity {
         okButton.setText("OK");
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                if ( editTextName.getText().toString().trim().length() != 0 && editTextDate.getText().toString().trim().length() != 0) {
                 EventDAO eventDAO = new EventDAO(getApplicationContext());
                 eventDAO.open();
-                Event a = new Event(editTextName.getText().toString(), editTextDate.getText().toString(), buildingChoice.getSelectedItem().toString());
-                eventDAO.createEvent(a);
-                Intent intent = new Intent(EventsActivity.this, EventsView.class);
-                startActivity(intent);
+                    Event a = new Event(editTextName.getText().toString(), editTextDate.getText().toString(), buildingChoice.getSelectedItem().toString());
+                    eventDAO.createEvent(a);
+                    Intent intent = new Intent(EventsActivity.this, EventsView.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getBaseContext(),"Please check if all fields are completed",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -63,7 +68,6 @@ public class EventsActivity extends AppCompatActivity {
 
         /*Name editText*/
         editTextName = (EditText) findViewById(R.id.name);
-
         /*DatePicker*/
         myCalendar = Calendar.getInstance();
         editTextDate = (EditText) findViewById(R.id.date);

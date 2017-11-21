@@ -40,9 +40,10 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
     String choice;
     Marker pos;
     String buildingfromevent;
-    public static List<String> buildingList = Arrays.asList("1","2","3","4","5","6","7","8","9","10",
+    public static List<String> buildingList = Arrays.asList("ruc","1","2","3","4","5","6","7","8","9","10",
             "11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28");
     public static ArrayList<LatLng> positionList = new ArrayList<LatLng>() {{
+        add(new LatLng(55.652622, 12.139827));
         add(new LatLng(55.653562, 12.139533));
         add(new LatLng(55.652920, 12.140992));
         add(new LatLng(55.653610, 12.140928));
@@ -138,7 +139,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
             public void onClick(android.view.View v) {
                 choice = buildingchoice.getSelectedItem().toString();
                 findBuildingByChoice(choice);
-                // TODO: 10/11/2017 add 9 other building (also in the list) // make a generic function
+                // TODO: 10/11/2017 add 9 other building in the list/ code should adapt to new entries automatically
             }
         });
     }
@@ -169,8 +170,15 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
     public void findBuildingByChoice(String choice){
         String mychoice = choice;
         for (int i = 0; i < buildingList.size();i++){
-            if (Integer.parseInt(mychoice)-1 == i){
-                newMarker(positionList.get(i), String.valueOf(i+1),mMap);
+            if (mychoice.matches("^-?\\d+$")){ // if choice is building number
+                if (Integer.parseInt(mychoice)-1 == i){
+                    newMarker(positionList.get(i), String.valueOf(i+1),mMap);
+                 }
+            }else {// if choice is a building name
+                //// TODO: 21/11/2017 do the list with building name and finish this part
+                if (mychoice == "aBuildingName"){
+                    newMarker(positionList.get(i), "buildingName ",mMap);
+                }
             }
         }
 
