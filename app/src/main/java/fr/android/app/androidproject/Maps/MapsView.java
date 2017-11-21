@@ -37,7 +37,9 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
     Button searchbtn;
     LatLng choicelatlng;
     String choiceview;
+    String choice;
     Marker pos;
+    String buildingfromevent;
     public static List<String> buildingList = Arrays.asList("1","2","3","4","5","6","7","8","9","10",
             "11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28");
     public static ArrayList<LatLng> positionList = new ArrayList<LatLng>() {{
@@ -75,6 +77,11 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_view);
+        /* we get data from events view if user click button view on map */
+        Bundle data = getIntent().getExtras();
+        if (data!=null) {
+            buildingfromevent = data.getString("buildingFromEvent");
+        }
 
         /*Obtain the SupportMapFragment and get notified when the map is ready to be used*/
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -109,8 +116,6 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        /*Add a marker in Sydney and move the camera*/
         LatLng ruc = new LatLng(55.652622, 12.139827);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ruc));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15.4f));
@@ -119,6 +124,11 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
                 == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
         }
+        /* handle if received a location from events view */
+        if (buildingfromevent != null){
+            choice = buildingfromevent;
+            findBuildingByChoice(choice);
+        }
 
         /*Search button*/
         searchbtn = (Button) findViewById(R.id.searchbutton);
@@ -126,260 +136,8 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
         searchbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
-                String choice = buildingchoice.getSelectedItem().toString();
-
-                if (Integer.parseInt(choice) == 1){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = positionList.get(0);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 2){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = positionList.get(1);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 3){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = positionList.get(2);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 4){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = positionList.get(3);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 5){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = positionList.get(4);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 6){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = positionList.get(5);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 7){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = positionList.get(6);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 8){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = positionList.get(7);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 9){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = positionList.get(8);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 10){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.653028, 12.140029);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 11){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.652743, 12.140447);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 12){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.652386, 12.140222);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 13){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.651998, 12.137101);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 14){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.651986, 12.137892);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 15){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.652361, 12.137828);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 16){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.652461, 12.136587);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 17){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.652446, 12.137172);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 18){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.652773, 12.137167);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 19){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.653091, 12.137183);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 20){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.653085, 12.136652);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 21){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.653097, 12.136078);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 22){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.653120, 12.135499);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 23){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.652787, 12.135489);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 24){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.652463, 12.135465);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 25){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.652182, 12.135009);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 26){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.651674, 12.136130);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 27){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.651501, 12.138780);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
-                if (Integer.parseInt(choice) == 28){
-                    if (pos != null){
-                        pos.remove();
-                    }
-                    choicelatlng = new LatLng(55.652442, 12.138995);
-                    choiceview = "1";
-                    pos = mMap.addMarker(new MarkerOptions().position(choicelatlng).title(choiceview));
-
-                }
+                choice = buildingchoice.getSelectedItem().toString();
+                findBuildingByChoice(choice);
                 // TODO: 10/11/2017 add 9 other building (also in the list) // make a generic function
             }
         });
@@ -392,4 +150,30 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null;
     }
+
+    public void newMarker(LatLng markerChoicelatlng, String markerchoiceview, GoogleMap nMap ){
+        LatLng latlng = markerChoicelatlng;
+        String view = markerchoiceview;
+        GoogleMap myMap = nMap;
+
+        if (pos != null){
+            pos.remove();
+        }
+        pos = myMap.addMarker(new MarkerOptions().position(latlng).title(view));
+        /* remove camera to center in case of */
+        myMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(55.652622, 12.139827)));
+        myMap.animateCamera(CameraUpdateFactory.zoomTo(15.4f));
+
+    }
+
+    public void findBuildingByChoice(String choice){
+        String mychoice = choice;
+        for (int i = 0; i < buildingList.size();i++){
+            if (Integer.parseInt(mychoice)-1 == i){
+                newMarker(positionList.get(i), String.valueOf(i+1),mMap);
+            }
+        }
+
+    }
+
 }

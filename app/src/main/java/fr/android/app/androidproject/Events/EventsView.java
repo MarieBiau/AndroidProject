@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -33,7 +34,6 @@ public class EventsView extends ListActivity {
     SimpleCursorAdapter mAdapter;
     View myview;
     Button seeonmapbtn;
-    String building;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,14 +158,14 @@ public class EventsView extends ListActivity {
             final Cursor myCursor = cursor;
             int namecln = myCursor.getColumnIndex(EVENT_NAME);
             int datecln = myCursor.getColumnIndex(EVENT_DATE);
-            int buildingcln = myCursor.getColumnIndex(EVENT_BUILDING);
+            final int buildingcln = myCursor.getColumnIndex(EVENT_BUILDING);
 
             TextView tv1 = (TextView) view.findViewById(R.id.name);
             TextView tv2 = (TextView) view.findViewById(R.id.date);
             Button btn = (Button) view.findViewById(R.id.see_on_map);
             String s1 = myCursor.getString(namecln);
             String s2 = myCursor.getString(datecln);
-            building = myCursor.getString(buildingcln);
+            final String building = myCursor.getString(buildingcln);
             tv1.setText(s1);
             tv2.setText(s2);
             btn.setClickable(true);
