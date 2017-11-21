@@ -33,7 +33,7 @@ public class EventsView extends ListActivity {
     SimpleCursorAdapter mAdapter;
     View myview;
     Button seeonmapbtn;
-    int test;
+    String test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,6 +165,7 @@ public class EventsView extends ListActivity {
             Button btn = (Button) view.findViewById(R.id.see_on_map);
             String s1 = myCursor.getString(namecln);
             String s2 = myCursor.getString(datecln);
+            test = myCursor.getString(buildingcln);
             tv1.setText(s1);
             tv2.setText(s2);
             btn.setClickable(true);
