@@ -40,10 +40,13 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
     String choice;
     Marker pos;
     String buildingfromevent;
-    public static List<String> buildingList = Arrays.asList("ruc","1","2","3","4","5","6","7","8","9","10",
-            "11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28");
+    int indexeur = 0;
+
+    public static List<String> buildingList = Arrays.asList("ruc","0","1","2","3","4","5","6","7","8","9","10",
+            "11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","36","37","38","40","41","42","43","44","45","46","korallen","kolibrien","rockwool");
     public static ArrayList<LatLng> positionList = new ArrayList<LatLng>() {{
-        add(new LatLng(55.652622, 12.139827));
+        add(new LatLng(55.652622, 12.139827));// ruc default centered map
+        add(new LatLng(55.653657, 12.138663)); // 0 to 28
         add(new LatLng(55.653562, 12.139533));
         add(new LatLng(55.652920, 12.140992));
         add(new LatLng(55.653610, 12.140928));
@@ -72,6 +75,22 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
         add(new LatLng(55.651674, 12.136130));
         add(new LatLng(55.651501, 12.138780));
         add(new LatLng(55.652442, 12.138995));
+        add(new LatLng(55.652441, 12.141396));
+        add(new LatLng(55.652399, 12.142008));
+        add(new LatLng(55.653005, 12.142091));
+        add(new LatLng(55.6543721, 12.1386321));
+        add(new LatLng(55.6548365, 12.1386762));
+        add(new LatLng(55.6549765, 12.1389745));
+        add(new LatLng(55.6549700, 12.1393248));
+        add(new LatLng(55.654615, 12.139909));
+        add(new LatLng(55.654594, 12.140632));
+        add(new LatLng(55.654594, 12.141281));
+        add(new LatLng(55.651404, 12.143217));
+        add(new LatLng(55.650867, 12.135655));
+        add(new LatLng(55.650197, 12.133114));
+
+
+
     }};
 
     @Override
@@ -139,7 +158,6 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
             public void onClick(android.view.View v) {
                 choice = buildingchoice.getSelectedItem().toString();
                 findBuildingByChoice(choice);
-                // TODO: 10/11/2017 add 9 other building in the list/ code should adapt to new entries automatically
             }
         });
     }
@@ -165,22 +183,45 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
         myMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(55.652622, 12.139827)));
         myMap.animateCamera(CameraUpdateFactory.zoomTo(15.4f));
 
+        if (markerchoiceview.equals("korallen")){
+
+        }
+
     }
 
     public void findBuildingByChoice(String choice){
         String mychoice = choice;
-        for (int i = 0; i < buildingList.size();i++){
-            if (mychoice.matches("^-?\\d+$")){ // if choice is building number
-                if (Integer.parseInt(mychoice)-1 == i){
-                    newMarker(positionList.get(i), String.valueOf(i+1),mMap);
-                 }
+        int i = 0; // for transition position list
+
+        for (final String building: buildingList ){
+
+            if (mychoice.matches("^-?\\d+$") && building.matches("^-?\\d+$")){ // if choice is building number
+                if (Integer.parseInt(mychoice) == Integer.parseInt(building)){
+                    newMarker(positionList.get(i), mychoice ,mMap);
+                }
             }else {// if choice is a building name
-                //// TODO: 21/11/2017 do the list with building name and finish this part
-                if (mychoice == "aBuildingName"){
-                    newMarker(positionList.get(i), "buildingName ",mMap);
+                if (building.equals(mychoice)){
+                    if (mychoice.equals("ruc")){ // for initial position we dont add marker and just recenter map
+                        if (pos != null){ // and we remove previous position if exist to prevent misunderstanding in frontend
+                            pos.remove();
+                        }
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(55.652622, 12.139827)));
+                        mMap.animateCamera(CameraUpdateFactory.zoomTo(15.4f));
+                    }else if (mychoice.equals("rockwool")){
+                        newMarker(positionList.get(i), mychoice, mMap); // we move a bit the camera because building are out of zoom
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(55.652622, 12.139827)));
+                        mMap.animateCamera(CameraUpdateFactory.zoomTo(14.9f));
+                    }else{
+                        newMarker(positionList.get(i), mychoice, mMap);
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(55.652622, 12.139827)));
+                        mMap.animateCamera(CameraUpdateFactory.zoomTo(15.2f));
+                    }
+
                 }
             }
+            i++; // add to transition position list
         }
+
 
     }
 
