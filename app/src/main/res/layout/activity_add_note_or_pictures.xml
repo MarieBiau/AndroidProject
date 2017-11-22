@@ -12,22 +12,29 @@
     android:weightSum="2"
     tools:context="fr.android.app.androidproject.PostEvents.AddNoteOrPicturesActivity">
 
-            <TextView
-                android:id="@+id/add_note"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textSize="18sp"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/add_pictures"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textSize="18sp"/>
+        <TextView
+                    android:id="@+id/add_pictures"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="18sp"/>
+
+        <TextView
+                    android:id="@+id/add_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="18sp"/>
+    </LinearLayout>
 
 </LinearLayout>

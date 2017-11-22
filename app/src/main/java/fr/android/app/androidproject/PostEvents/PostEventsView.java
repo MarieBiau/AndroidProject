@@ -3,16 +3,19 @@ package fr.android.app.androidproject.PostEvents;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import fr.android.app.androidproject.Main.MainActivity;
@@ -67,8 +70,8 @@ public class PostEventsView extends ListActivity {
 
         postEventsCursor = postEventDAO.getAllPostEventsCursor();
         startManagingCursor(postEventsCursor);
-        mAdapter = new SimpleCursorAdapter
-                (this, R.layout.activity_postevents_view_list, postEventsCursor, new String[]{"_id", EVENT_NAME, EVENT_DATE}, new int[]{0, R.id.name, R.id.date}, 0);
+        mAdapter = new MyCursorAdapter
+                (this, R.layout.activity_postevents_view_list, postEventsCursor, new String[]{"_id", EVENT_NAME, EVENT_DATE}, new int[]{0, R.id.name, R.id.date});
         this.setListAdapter(mAdapter);
 
         /*Delete postevents*/
@@ -106,6 +109,43 @@ public class PostEventsView extends ListActivity {
                 })
                 .create();
         mDialogBox.show();
+    }
+
+    public class MyCursorAdapter extends SimpleCursorAdapter {
+        public MyCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to) {
+            super(context, layout, c, from, to);
+        }
+
+        @Override
+        public void bindView(View view, Context context, Cursor cursor) {
+            int position = cursor.getPosition();
+            final Cursor myCursor = cursor;
+            int idcln = myCursor.getColumnIndex("_id");
+            int namecln = myCursor.getColumnIndex(EVENT_NAME);
+            int datecln = myCursor.getColumnIndex(EVENT_DATE);
+            //final int button = myCursor.getColumnIndex(EVENT_BUILDING);
+
+            TextView tv1 = (TextView) view.findViewById(R.id.name);
+            TextView tv2 = (TextView) view.findViewById(R.id.date);
+            Button btn = (Button) view.findViewById(R.id.add_note_or_pictures_button);
+            String s1 = myCursor.getString(namecln);
+            String s2 = myCursor.getString(datecln);
+            final int s3 = myCursor.getInt(idcln);
+            //final String building = myCursor.getString(buildingcln);
+            tv1.setText(s1);
+            tv2.setText(s2);
+            btn.setClickable(true);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(PostEventsView.this, AddNoteOrPicturesActivity.class);
+                    Log.d("test1", String.valueOf(s3));
+                    intent.putExtra("idfrompostevent",String.valueOf(s3));
+                    startActivity(intent);
+                }
+            });
+
+        }
     }
 
 }
