@@ -11,7 +11,6 @@ import static fr.android.app.androidproject.DatabaseHandler.EVENT_ID;
 import static fr.android.app.androidproject.DatabaseHandler.EVENT_NAME;
 import static fr.android.app.androidproject.DatabaseHandler.EVENT_NOTE;
 import static fr.android.app.androidproject.DatabaseHandler.EVENT_PICTURES;
-import static fr.android.app.androidproject.DatabaseHandler.EVENT_TABLE_NAME;
 import static fr.android.app.androidproject.DatabaseHandler.POSTEVENT_TABLE_NAME;
 
 public class PostEventDAO extends DAOBase {
@@ -27,6 +26,16 @@ public class PostEventDAO extends DAOBase {
         values.put(EVENT_NOTE, postevent.getNote());
         values.put(EVENT_PICTURES, String.valueOf(postevent.getPictures()));
         return mDb.insert(POSTEVENT_TABLE_NAME, null, values) > 0;
+    }
+
+    public void updatePostEvent (String note, int id){
+        ContentValues values = new ContentValues();
+        values.put(EVENT_NOTE, note);
+        mDb.update(POSTEVENT_TABLE_NAME,values,"id="+ id,null);
+    }
+
+    public Cursor getPostEventCursor(int id){
+        return mDb.rawQuery("select " + "id as _id, name, note, pictures " + "from " + POSTEVENT_TABLE_NAME + " where " + "_id = " + id, null);
     }
 
     public boolean deletePostEvent(int id) {

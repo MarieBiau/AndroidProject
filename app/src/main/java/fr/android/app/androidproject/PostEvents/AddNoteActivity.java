@@ -15,10 +15,17 @@ public class AddNoteActivity extends AppCompatActivity {
     Button okButton;
     Button backButton;
     EditText editTextNote;
+    int idpostevent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
+
+        /* get data from addnotorpicture*/
+        Bundle data = getIntent().getExtras();
+        if (data!=null) {
+            idpostevent = Integer.parseInt(data.getString("posteventid"));
+        }
 
         /* set variables */
         okButton = (Button) findViewById(R.id.okbutton);
@@ -34,6 +41,14 @@ public class AddNoteActivity extends AppCompatActivity {
                 if ( editTextNote.getText().toString().trim().length() != 0 ) {
                     PostEventDAO postsEventDAO = new PostEventDAO(getApplicationContext());
                     postsEventDAO.open();
+                    if (Integer.toString(idpostevent) != null) {
+                        postsEventDAO.updatePostEvent(editTextNote.getText().toString(), idpostevent);
+                    }
+                    Intent intent = new Intent(AddNoteActivity.this, AddNoteOrPicturesActivity.class);
+                    if (Integer.toString(idpostevent) != null) {
+                        intent.putExtra("idfrompostevent",  String.valueOf(idpostevent));
+                    }
+                    startActivity(intent);
                     /*Event a = new Event(editTextNote.getText().toString(), editTextDate.getText().toString(), buildingChoice.getSelectedItem().toString());
                     postsEventDAO.createEvent(a);
                     Intent intent = new Intent(EventsActivity.this, EventsView.class);
