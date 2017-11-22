@@ -29,7 +29,7 @@ public class EventDAO extends DAOBase {
     public boolean deleteEvent(int id) {
         return mDb.delete(EVENT_TABLE_NAME, EVENT_ID + " = ?", new String[] {String.valueOf(id)}) > 0;
     }
-
+//// TODO: 22/11/2017 change the query to return only event not past 
     public Cursor getAllEventsCursor() {
         return mDb.rawQuery("select " + "id as _id, name, date, building" + " from " + EVENT_TABLE_NAME + " order by date", null);
     }

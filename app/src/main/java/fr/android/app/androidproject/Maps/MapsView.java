@@ -30,7 +30,7 @@ import java.util.List;
 import fr.android.app.androidproject.R;
 
 public class MapsView extends FragmentActivity implements OnMapReadyCallback {
-
+//// TODO: 22/11/2017 maybe change design to align button search with spinner / add a textview saying what is shown on the map for clear frontend / button back to mainview
     private GoogleMap mMap;
     Spinner buildingchoice;
     TextView buildingtext;
