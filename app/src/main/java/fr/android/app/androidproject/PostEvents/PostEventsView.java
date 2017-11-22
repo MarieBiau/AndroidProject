@@ -65,8 +65,8 @@ public class PostEventsView extends ListActivity {
         postEventDAO = new PostEventDAO(getApplicationContext());
         postEventDAO.open();
 
-        PostEvent a = new PostEvent("a", "2010-10-10", null, null);
-        postEventDAO.createPostEvent(a);
+        /*PostEvent a = new PostEvent("abcd", "2010-10-10", null, null);
+        postEventDAO.createPostEvent(a);*/ //fill table
 
         postEventsCursor = postEventDAO.getAllPostEventsCursor();
         startManagingCursor(postEventsCursor);

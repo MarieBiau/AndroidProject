@@ -34,7 +34,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
 
         /*okbutton*/
-
+        //// TODO: 22/11/2017 FOR NOW 
         okButton.setText("OK");
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

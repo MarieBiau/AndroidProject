@@ -33,7 +33,7 @@ public class PostEventDAO extends DAOBase {
         values.put(EVENT_NOTE, note);
         mDb.update(POSTEVENT_TABLE_NAME,values,"id="+ id,null);
     }
-
+    //// TODO: 22/11/2017 FOR NOW
     public Cursor getPostEventCursor(int id){
         return mDb.rawQuery("select " + "id as _id, name, note, pictures " + "from " + POSTEVENT_TABLE_NAME + " where " + "_id = " + id, null);
     }
