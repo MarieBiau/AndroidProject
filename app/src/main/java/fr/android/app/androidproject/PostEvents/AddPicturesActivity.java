@@ -60,7 +60,7 @@ public class AddPicturesActivity extends AppCompatActivity {
                         if (byteArray != null) {
                             postsEventDAO.updatePostEventPic(byteArray, idpostevent);
                         }else{
-                            Toast.makeText(getBaseContext(),"Had a picture before click ok",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(),"No picture added - make sure to add one",Toast.LENGTH_LONG).show();
                         }
                     }
                     Intent intent = new Intent(AddPicturesActivity.this, AddNoteOrPicturesActivity.class);
