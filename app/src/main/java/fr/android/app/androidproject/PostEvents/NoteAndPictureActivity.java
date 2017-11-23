@@ -24,7 +24,7 @@ import static fr.android.app.androidproject.DatabaseHandler.EVENT_NAME;
 import static fr.android.app.androidproject.DatabaseHandler.EVENT_NOTE;
 import static fr.android.app.androidproject.DatabaseHandler.EVENT_PICTURES;
 
-public class AddNoteOrPicturesActivity extends AppCompatActivity {
+public class NoteAndPictureActivity extends AppCompatActivity {
 
     TextView textBlocAddNote;
     ImageView textBlocAddPictures;
@@ -42,12 +42,12 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_note_or_pictures);
+        setContentView(R.layout.activity_note_and_picture);
 
         /* get data from post events view */
         Bundle data = getIntent().getExtras();
         if (data!=null) {
-            idpostevent = Integer.parseInt(data.getString("idfrompostevent"));
+            idpostevent = Integer.parseInt(data.getString("idFromPostEvent"));
         }
         /*TextView*/
         textBlocAddNote = (TextView) findViewById(R.id.add_note);
@@ -59,7 +59,7 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
         backButton.setText("Back");
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(AddNoteOrPicturesActivity.this, PostEventsView.class);
+                Intent intent = new Intent(NoteAndPictureActivity.this, PostEventsView.class);
                 startActivity(intent);
             }
         });
@@ -89,7 +89,7 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
             textBlocAddNote.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
 
-                    Intent intent = new Intent(AddNoteOrPicturesActivity.this, AddNoteActivity.class);
+                    Intent intent = new Intent(NoteAndPictureActivity.this, AddNoteActivity.class);
                     if (Integer.toString(idpostevent) != null) {
                         intent.putExtra("posteventid", String.valueOf(idpostevent));
                     }
@@ -103,7 +103,7 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
             textBlocAddNote.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(AddNoteOrPicturesActivity.this, AddNoteActivity.class);
+                    Intent intent = new Intent(NoteAndPictureActivity.this, AddNoteActivity.class);
                     if (Integer.toString(idpostevent) != null) {
                         intent.putExtra("posteventid", String.valueOf(idpostevent));
                         intent.putExtra("notevalue",note);
@@ -124,12 +124,12 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
 
         if (imgptr == null || BitmapFactory.decodeByteArray(imgptr, 0, imgptr.length) == null){
             // add "add picture " text to the imageview
-            //// TODO: 23/11/2017  
+            //// TODO: 23/11/2017
 
             // clicklistener
             textBlocAddPictures.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent(AddNoteOrPicturesActivity.this, AddPicturesActivity.class);
+                    Intent intent = new Intent(NoteAndPictureActivity.this, AddPictureActivity.class);
                     if (Integer.toString(idpostevent) != null) {
                         intent.putExtra("posteventid", String.valueOf(idpostevent));
                     }
@@ -137,16 +137,13 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
                 }
             });
             /*textBlocAddNote.setText("Add note");
-
             textBlocAddNote.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-
                     Intent intent = new Intent(AddNoteOrPicturesActivity.this, AddNoteActivity.class);
                     if (Integer.toString(idpostevent) != null) {
                         intent.putExtra("posteventid", String.valueOf(idpostevent));
                     }
                     startActivity(intent);
-
                 }
             });*/
 
@@ -159,7 +156,7 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     //// TODO: 23/11/2017 new activity to show image full
-                    Intent intent = new Intent(AddNoteOrPicturesActivity.this, SeeFullPicture.class);
+                    Intent intent = new Intent(NoteAndPictureActivity.this, SeeFullPicture.class);
                     if (Integer.toString(idpostevent) != null) {
                         intent.putExtra("posteventid", String.valueOf(idpostevent));
                         intent.putExtra("img",imgptr);
@@ -195,8 +192,8 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
                         notechanged[0]= true; // for refreshing page
                         finish();
                         startActivity(getIntent());
-                        getIntent().putExtra("idfrompostevent", idpostevent);
-                        Toast.makeText(AddNoteOrPicturesActivity.this, "Note Deleted", Toast.LENGTH_SHORT).show();
+                        getIntent().putExtra("idFromPostEvent", idpostevent);
+                        Toast.makeText(NoteAndPictureActivity.this, "Note Deleted", Toast.LENGTH_SHORT).show();
 
                     }
                 })
@@ -207,8 +204,8 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
                     }
                 })
                 .create();
-      mDialogBox.show();
-    return notechanged[0];
+        mDialogBox.show();
+        return notechanged[0];
     }
     private void deleteimgConfirmation(final int id)
     {
@@ -222,8 +219,8 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
                         postsEventDAO.deletePostEventImg(id);
                         finish();
                         startActivity(getIntent());
-                        getIntent().putExtra("idfrompostevent", idpostevent);
-                        Toast.makeText(AddNoteOrPicturesActivity.this, "Image Deleted", Toast.LENGTH_SHORT).show();
+                        getIntent().putExtra("idFromPostEvent", idpostevent);
+                        Toast.makeText(NoteAndPictureActivity.this, "Image Deleted", Toast.LENGTH_SHORT).show();
 
                     }
                 })
@@ -235,4 +232,5 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
                 .create();
         mDialogBox.show();
     }
+
 }

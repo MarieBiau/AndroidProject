@@ -5,10 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 
 public abstract class DAOBase {
 
-    protected final static int VERSION = 1;
-    protected final static String NAME = "database.db";
+    private final static int VERSION = 1;
+    private final static String NAME = "database.db";
     protected SQLiteDatabase mDb = null;
-    protected DatabaseHandler mHandler = null;
+    private DatabaseHandler mHandler = null;
 
     public DAOBase(Context pContext) {
         this.mHandler = new DatabaseHandler(pContext, NAME, null, VERSION);

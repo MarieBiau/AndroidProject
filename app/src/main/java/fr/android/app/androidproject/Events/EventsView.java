@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -32,8 +31,6 @@ public class EventsView extends ListActivity {
     EventDAO eventDAO;
     Cursor eventsCursor;
     SimpleCursorAdapter mAdapter;
-    View myview;
-    Button seeonmapbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,53 +57,16 @@ public class EventsView extends ListActivity {
             }
         });
 
-
-        /*seeonmapbtn = (Button) findViewById(R.id.see_on_map);
-            seeonmapbtn.setTag("test");
-            Toast.makeText(getBaseContext(), "nice", Toast.LENGTH_LONG).show();
-            seeonmapbtn.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(EventsView.this, MainActivity.class);
-                    startActivity(intent);
-                }
-            });*/
-
-
         /*ViewList with all created events*/
         eventDAO = new EventDAO(getApplicationContext());
         eventDAO.open();
         eventsCursor = eventDAO.getAllEventsCursor();
         startManagingCursor(eventsCursor);
         mAdapter = new MyCursorAdapter
-                (this, R.layout.activity_events_view_list, eventsCursor, new String[]{"_id", EVENT_NAME, EVENT_DATE}, new int[]{0, R.id.name, R.id.date});/*{
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent)
-            {
-                final View row = super.getView(position, convertView, parent);
-                for (int i = 0;i < eventsCursor.getCount();i++){
-                    if (position == i){
-                        row.setBackgroundResource(android.R.color.darker_gray);
-                        row.setTag("id" + i);
-                        row.setClickable(true);
-
-                        row.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Toast.makeText(getBaseContext(),"test",Toast.LENGTH_LONG);
-                            }
-                        });
-                    }
-                }
-                return row;*/
-               /* if (position % 2 == 0)
-                    row.setBackgroundResource(android.R.color.darker_gray);
-                else
-                    row.setBackgroundResource(android.R.color.background_light);
-                return row;*/
-          //  }
-        //};
+                (this, R.layout.activity_events_view_list, eventsCursor,
+                        new String[]{"_id", EVENT_NAME, EVENT_DATE},
+                        new int[]{0, R.id.name, R.id.date}, 0);
         this.setListAdapter(mAdapter);
-
 
         /*Delete events*/
         mListView = (ListView) findViewById(android.R.id.list);
@@ -146,28 +106,30 @@ public class EventsView extends ListActivity {
         mDialogBox.show();
     }
 
-    /* try */
-    public class MyCursorAdapter extends SimpleCursorAdapter {
-        public MyCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to) {
-            super(context, layout, c, from, to);
+    /* Cursor Adapter */
+    private class MyCursorAdapter extends SimpleCursorAdapter {
+
+        MyCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags) {
+            super(context, layout, c, from, to, flags);
         }
 
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
-            int position = cursor.getPosition();
-            final Cursor myCursor = cursor;
-            int namecln = myCursor.getColumnIndex(EVENT_NAME);
-            int datecln = myCursor.getColumnIndex(EVENT_DATE);
-            final int buildingcln = myCursor.getColumnIndex(EVENT_BUILDING);
+            int nameCln = cursor.getColumnIndex(EVENT_NAME);
+            int dateCln = cursor.getColumnIndex(EVENT_DATE);
+            final int buildingCln = cursor.getColumnIndex(EVENT_BUILDING);
 
             TextView tv1 = (TextView) view.findViewById(R.id.name);
             TextView tv2 = (TextView) view.findViewById(R.id.date);
             Button btn = (Button) view.findViewById(R.id.see_on_map);
-            String s1 = myCursor.getString(namecln);
-            String s2 = myCursor.getString(datecln);
-            final String building = myCursor.getString(buildingcln);
+
+            String s1 = cursor.getString(nameCln);
+            String s2 = cursor.getString(dateCln);
+            final String building = cursor.getString(buildingCln);
+
             tv1.setText(s1);
             tv2.setText(s2);
+
             btn.setClickable(true);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -177,8 +139,8 @@ public class EventsView extends ListActivity {
                     startActivity(intent);
                 }
             });
-
         }
+
     }
 
 }
