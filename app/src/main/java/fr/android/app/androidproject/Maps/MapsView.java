@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -41,6 +42,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
     Marker pos;
     String buildingfromevent;
     int indexeur = 0;
+    LatLng ruc = new LatLng(55.652622, 12.139827);
 
     public static List<String> buildingList = Arrays.asList("ruc","0","1","2","3","4","5","6","7","8","9","10",
             "11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","36","37","38","40","41","42","43","44","45","46","korallen","kolibrien","rockwool");
@@ -136,9 +138,9 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng ruc = new LatLng(55.652622, 12.139827);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(ruc));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(15.4f));
+        float zoom = 15.4f;
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(ruc,zoom);
+        mMap.animateCamera(cameraUpdate);
         // TODO: 30/10/2017 use API from google to get latlng 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
@@ -160,6 +162,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
                 findBuildingByChoice(choice);
             }
         });
+
     }
 
     /*Check if network is available to get location*/
@@ -180,12 +183,10 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
         }
         pos = myMap.addMarker(new MarkerOptions().position(latlng).title(view));
         /* remove camera to center in case of */
-        myMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(55.652622, 12.139827)));
-        myMap.animateCamera(CameraUpdateFactory.zoomTo(15.4f));
+        float zoom = 15.4f;
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(ruc,zoom);
+        mMap.animateCamera(cameraUpdate);
 
-        if (markerchoiceview.equals("korallen")){
-
-        }
 
     }
 
@@ -205,16 +206,19 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
                         if (pos != null){ // and we remove previous position if exist to prevent misunderstanding in frontend
                             pos.remove();
                         }
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(55.652622, 12.139827)));
-                        mMap.animateCamera(CameraUpdateFactory.zoomTo(15.4f));
+                        float zoom = 15.4f;
+                        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(ruc,zoom);
+                        mMap.animateCamera(cameraUpdate);
                     }else if (mychoice.equals("rockwool")){
                         newMarker(positionList.get(i), mychoice, mMap); // we move a bit the camera because building are out of zoom
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(55.652622, 12.139827)));
-                        mMap.animateCamera(CameraUpdateFactory.zoomTo(14.9f));
+                        float zoom = 14.9f;
+                        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(ruc,zoom);
+                        mMap.animateCamera(cameraUpdate);
                     }else{
                         newMarker(positionList.get(i), mychoice, mMap);
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(55.652622, 12.139827)));
-                        mMap.animateCamera(CameraUpdateFactory.zoomTo(15.2f));
+                        float zoom = 15.2f;
+                        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(ruc,zoom);
+                        mMap.animateCamera(cameraUpdate);
                     }
 
                 }
