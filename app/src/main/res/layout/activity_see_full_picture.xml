@@ -11,8 +11,8 @@
         android:id="@+id/imageView" />
 
     <Button
+        android:id="@+id/backbutton"
         android:text="Button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button" />
+        android:layout_height="wrap_content"/>
 </LinearLayout>
