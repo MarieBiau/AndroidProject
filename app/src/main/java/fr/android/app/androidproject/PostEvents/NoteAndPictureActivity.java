@@ -27,6 +27,7 @@ public class NoteAndPictureActivity extends AppCompatActivity {
     Button backButton;
     TextView textBlocAddNote;
     ImageView textBlocAddPictures;
+    TextView textpic;
     TextView textBlocTitle;
     PostEventDAO postsEventDAO;
     int idpostevent;
@@ -61,6 +62,7 @@ public class NoteAndPictureActivity extends AppCompatActivity {
         textBlocTitle = (TextView)  findViewById(R.id.title);
         textBlocAddNote = (TextView) findViewById(R.id.add_note);
         textBlocAddPictures = (ImageView) findViewById(R.id.add_pictures);
+        textpic = (TextView) findViewById(R.id.text_pictures);
 
         /*Ask database to retrieve the associated event */
         if (!(noteChanged[0])) {    //If the user has not erased the note earlier
@@ -114,6 +116,7 @@ public class NoteAndPictureActivity extends AppCompatActivity {
         }
 
         if (imgPtr == null || BitmapFactory.decodeByteArray(imgPtr, 0, imgPtr.length) == null){
+            textpic.setText("Add Picture");
             textBlocAddPictures.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(NoteAndPictureActivity.this, AddPictureActivity.class);
@@ -125,6 +128,7 @@ public class NoteAndPictureActivity extends AppCompatActivity {
             });
 
         } else {
+            textpic.setText("");
             Bitmap img = BitmapFactory.decodeByteArray(imgPtr, 0, imgPtr.length);
             textBlocAddPictures.setImageBitmap(img);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
