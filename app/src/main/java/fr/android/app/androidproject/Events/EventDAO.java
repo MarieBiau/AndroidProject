@@ -35,7 +35,7 @@ public class EventDAO extends DAOBase {
     }
 
     public Cursor getPassedEventsId() {
-        return mDb.rawQuery("select " + "id as _id" + " from " + EVENT_TABLE_NAME + " where date < strftime('%Y-%m-%d %H:%M','now')", null);
+        return mDb.rawQuery("select " + "id as _id, name, date" + " from " + EVENT_TABLE_NAME + " where date < strftime('%Y-%m-%d %H:%M','now')", null);
     }
 
 }

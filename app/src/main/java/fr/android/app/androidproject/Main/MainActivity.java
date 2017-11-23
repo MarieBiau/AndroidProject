@@ -10,6 +10,8 @@ import android.widget.TextView;
 import fr.android.app.androidproject.Events.EventDAO;
 import fr.android.app.androidproject.Events.EventsView;
 import fr.android.app.androidproject.Maps.MapsView;
+import fr.android.app.androidproject.PostEvents.PostEvent;
+import fr.android.app.androidproject.PostEvents.PostEventDAO;
 import fr.android.app.androidproject.PostEvents.PostEventsView;
 import fr.android.app.androidproject.R;
 
@@ -54,18 +56,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //checkEventsDate();
+        checkEventsDate();
     }
 
+    /*Moves the passed events from the Event table to the PostEvent table*/
     public void checkEventsDate() {
         EventDAO eventDAO;
+        PostEventDAO postEventDAO;
         Cursor eventsCursor;
+
         eventDAO = new EventDAO(getApplicationContext());
         eventDAO.open();
+        postEventDAO = new PostEventDAO(getApplicationContext());
+        postEventDAO.open();
+
         eventsCursor = eventDAO.getPassedEventsId();
-        for (eventsCursor.moveToFirst(); !eventsCursor.isAfterLast(); eventsCursor.moveToNext()) {
-            eventDAO.deleteEvent(eventsCursor.getInt(eventsCursor.getColumnIndex("id")));
+        if ((eventsCursor != null) && (eventsCursor.getCount() > 0)) {
+            for (eventsCursor.moveToFirst(); !eventsCursor.isAfterLast(); eventsCursor.moveToNext()) {
+                eventDAO.deleteEvent(eventsCursor.getInt(eventsCursor.getColumnIndex("_id")));
+                PostEvent postevent = new PostEvent(
+                        eventsCursor.getInt(eventsCursor.getColumnIndex("_id")),
+                        eventsCursor.getString(eventsCursor.getColumnIndex("name")),
+                        eventsCursor.getString(eventsCursor.getColumnIndex("date")),
+                        null,null);
+                postEventDAO.createPostEvent(postevent);
+            }
         }
+
     }
 
 }

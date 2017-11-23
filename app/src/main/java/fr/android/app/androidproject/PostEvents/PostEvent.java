@@ -7,11 +7,10 @@ public class PostEvent {
     private String date;
     private String note;
     private byte[] pictures;
-    private static int cpt;
 
-    public PostEvent(String name, String date, String note, byte[] pictures) {
+    public PostEvent(int id, String name, String date, String note, byte[] pictures) {
         super();
-        this.id = cpt++;
+        this.id = id;
         this.name = name;
         this.date = date;
         this.note = note;
