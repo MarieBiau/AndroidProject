@@ -162,7 +162,7 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
                     Intent intent = new Intent(AddNoteOrPicturesActivity.this, SeeFullPicture.class);
                     if (Integer.toString(idpostevent) != null) {
                         intent.putExtra("posteventid", String.valueOf(idpostevent));
-                        intent.putExtra("img",String.valueOf(imgptr));
+                        intent.putExtra("img",imgptr);
                     }
                     startActivity(intent);
                 }
