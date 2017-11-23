@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
     PostEventDAO postsEventDAO;
     final boolean[] notechanged = new boolean[1];
     EventDAO eventDAO;
+    Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,16 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
         /*TextView*/
         textBlocAddNote = (TextView) findViewById(R.id.add_note);
         textBlocAddPictures = (TextView) findViewById(R.id.add_pictures);
+        backButton = (Button) findViewById(R.id.backbutton);
+
+        /* back button */
+        backButton.setText("Back");
+        backButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(AddNoteOrPicturesActivity.this, PostEventsView.class);
+                startActivity(intent);
+            }
+        });
 
         /* ask database to retreive the associated event */
         if (!(notechanged[0])) { // we dont do that if the user have erased the note earlier
@@ -52,7 +64,6 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
                 startManagingCursor(myCursor);
                 if (!myCursor.moveToFirst())
                     myCursor.moveToFirst();
-//            Log.d("test value", myCursor.getString(myCursor.getColumnIndex(EVENT_NOTE)));
                 note = myCursor.getString(myCursor.getColumnIndex(EVENT_NOTE));
             }
         }
@@ -93,7 +104,7 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
                 }
             });
         }
-        //todo if nothing in database
+        //todo picture
 
         textBlocAddPictures.setText("Add pictures");
 
@@ -127,7 +138,6 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
                         startActivity(getIntent());
                         getIntent().putExtra("idfrompostevent", idpostevent);
                         Toast.makeText(AddNoteOrPicturesActivity.this, "Note Deleted", Toast.LENGTH_SHORT).show();
-                        //dialog.dismiss();
 
                     }
                 })

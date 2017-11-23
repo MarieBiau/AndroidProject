@@ -40,7 +40,6 @@ public class AddNoteActivity extends AppCompatActivity {
         }
 
         /*okbutton*/
-        //// TODO: 22/11/2017 FOR NOW 
         okButton.setText("OK");
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -55,10 +54,6 @@ public class AddNoteActivity extends AppCompatActivity {
                         intent.putExtra("idfrompostevent",  String.valueOf(idpostevent));
                     }
                     startActivity(intent);
-                    /*Event a = new Event(editTextNote.getText().toString(), editTextDate.getText().toString(), buildingChoice.getSelectedItem().toString());
-                    postsEventDAO.createEvent(a);
-                    Intent intent = new Intent(EventsActivity.this, EventsView.class);
-                    startActivity(intent);*/
                 }else{
                     Toast.makeText(getBaseContext(),"Please check if all fields are completed",Toast.LENGTH_LONG).show();
                 }
