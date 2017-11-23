@@ -24,8 +24,7 @@ public class SeeFullPicture extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_see_full_picture);
-
-
+        
         /* get data from post events view */
         Bundle data = getIntent().getExtras();
         if (data!=null) {
@@ -46,6 +45,9 @@ public class SeeFullPicture extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(SeeFullPicture.this, NoteAndPictureActivity.class);
+                if (Integer.toString(idpostevent) != null) {
+                    intent.putExtra("idFromPostEvent",  String.valueOf(idpostevent));
+                }
                 startActivity(intent);
             }
         });
