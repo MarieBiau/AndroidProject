@@ -60,22 +60,36 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
 
         if (note == null){
             textBlocAddNote.setText("Add note");
+            textBlocAddNote.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(AddNoteOrPicturesActivity.this, AddNoteActivity.class);
+                    if (Integer.toString(idpostevent) != null) {
+                        intent.putExtra("posteventid", String.valueOf(idpostevent));
+                    }
+                    startActivity(intent);
+                }
+            });
+
         }else{
             textBlocAddNote.setText(note);
+            textBlocAddNote.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Intent intent = new Intent(AddNoteOrPicturesActivity.this, AddNoteActivity.class);
+                    if (Integer.toString(idpostevent) != null) {
+                        intent.putExtra("posteventid", String.valueOf(idpostevent));
+                        intent.putExtra("notevalue",note);
+                    }
+                    startActivity(intent);
+                    return true;
+                }
+            });
         }
         //todo if nothing in database
 
         textBlocAddPictures.setText("Add pictures");
 
-        textBlocAddNote.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(AddNoteOrPicturesActivity.this, AddNoteActivity.class);
-                if (Integer.toString(idpostevent) != null) {
-                    intent.putExtra("posteventid", String.valueOf(idpostevent));
-                }
-                startActivity(intent);
-            }
-        });
+
 
         textBlocAddPictures.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

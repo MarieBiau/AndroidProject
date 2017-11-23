@@ -16,6 +16,7 @@ public class AddNoteActivity extends AppCompatActivity {
     Button backButton;
     EditText editTextNote;
     int idpostevent;
+    String notevalue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,7 @@ public class AddNoteActivity extends AppCompatActivity {
         Bundle data = getIntent().getExtras();
         if (data!=null) {
             idpostevent = Integer.parseInt(data.getString("posteventid"));
+            notevalue = data.getString("notevalue");
         }
 
         /* set variables */
@@ -32,6 +34,10 @@ public class AddNoteActivity extends AppCompatActivity {
         backButton = (Button) findViewById(R.id.backbutton);
         editTextNote = (EditText) findViewById(R.id.note);
 
+         /* if there is already a note we show note for modification */
+        if (notevalue != null){
+            editTextNote.setText(notevalue);
+        }
 
         /*okbutton*/
         //// TODO: 22/11/2017 FOR NOW 
