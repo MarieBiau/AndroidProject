@@ -1,17 +1,15 @@
 package fr.android.app.androidproject.PostEvents;
 
-import java.util.ArrayList;
-
 public class PostEvent {
 
     private int id;
     private String name;
     private String date;
     private String note;
-    private ArrayList<byte[]> pictures;
+    private byte[] pictures;
     private static int cpt;
 
-    public PostEvent(String name, String date, String note, ArrayList<byte[]> pictures) {
+    public PostEvent(String name, String date, String note, byte[] pictures) {
         super();
         this.id = cpt++;
         this.name = name;
@@ -53,11 +51,11 @@ public class PostEvent {
         this.note = note;
     }
 
-    public ArrayList<byte[]> getPictures() {
+    public byte[] getPictures() {
         return pictures;
     }
 
-    public void setPictures(ArrayList<byte[]> pictures) {
+    public void setPictures(byte[] pictures) {
         this.pictures = pictures;
     }
 
