@@ -15,15 +15,18 @@ import android.widget.Toast;
 import fr.android.app.androidproject.Events.EventDAO;
 import fr.android.app.androidproject.R;
 
+import static fr.android.app.androidproject.DatabaseHandler.EVENT_NAME;
 import static fr.android.app.androidproject.DatabaseHandler.EVENT_NOTE;
 
 public class AddNoteOrPicturesActivity extends AppCompatActivity {
 
     TextView textBlocAddNote;
     TextView textBlocAddPictures;
+    TextView textBlocTitle;
     int idpostevent;
     Cursor myCursor;
     String note;
+    String name;
     PostEventDAO postsEventDAO;
     final boolean[] notechanged = new boolean[1];
     EventDAO eventDAO;
@@ -44,6 +47,7 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
         textBlocAddNote = (TextView) findViewById(R.id.add_note);
         textBlocAddPictures = (TextView) findViewById(R.id.add_pictures);
         backButton = (Button) findViewById(R.id.backbutton);
+        textBlocTitle = (TextView)  findViewById(R.id.title);
 
         /* back button */
         backButton.setText("Back");
@@ -60,13 +64,16 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
             postsEventDAO.open();
             if (Integer.toString(idpostevent) != null) {
                 myCursor = postsEventDAO.getPostEventCursor(idpostevent);
-                Log.d("number of return", String.valueOf(myCursor.getColumnCount()));
                 startManagingCursor(myCursor);
                 if (!myCursor.moveToFirst())
                     myCursor.moveToFirst();
                 note = myCursor.getString(myCursor.getColumnIndex(EVENT_NOTE));
+                name = myCursor.getString(myCursor.getColumnIndex(EVENT_NAME));
             }
         }
+
+        /* set title of event */
+        textBlocTitle.setText("Event : " + name);
 
         if (note == null){
             textBlocAddNote.setText("Add note");
