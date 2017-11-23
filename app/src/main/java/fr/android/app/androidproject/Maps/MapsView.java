@@ -31,21 +31,18 @@ import java.util.List;
 import fr.android.app.androidproject.R;
 
 public class MapsView extends FragmentActivity implements OnMapReadyCallback {
-//// TODO: 22/11/2017 maybe change design to align button search with spinner / add a textview saying what is shown on the map for clear frontend / button back to mainview
     private GoogleMap mMap;
-    Spinner buildingchoice;
-    TextView buildingtext;
-    Button searchbtn;
-    LatLng choicelatlng;
-    String choiceview;
+    Spinner buildingChoice;
+    TextView buildingText;
+    Button searchButton;
     String choice;
     Marker pos;
-    String buildingfromevent;
-    int indexeur = 0;
+    String buildingFromEvent;
     LatLng ruc = new LatLng(55.652622, 12.139827);
 
-    public static List<String> buildingList = Arrays.asList("ruc","0","1","2","3","4","5","6","7","8","9","10",
-            "11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","36","37","38","40","41","42","43","44","45","46","korallen","kolibrien","rockwool");
+    public static List<String> buildingList = Arrays.asList("ruc","0","1","2","3","4","5","6","7","8","9",
+            "10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28",
+            "36","37","38","40","41","42","43","44","45","46","korallen","kolibrien","rockwool");
     public static ArrayList<LatLng> positionList = new ArrayList<LatLng>() {{
         add(new LatLng(55.652622, 12.139827));// ruc default centered map
         add(new LatLng(55.653657, 12.138663)); // 0 to 28
@@ -90,19 +87,17 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
         add(new LatLng(55.651404, 12.143217));
         add(new LatLng(55.650867, 12.135655));
         add(new LatLng(55.650197, 12.133114));
-
-
-
     }};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_view);
-        /* we get data from events view if user click button view on map */
+
+        /*Get data from EventsView if the user clicked on the button "See on map" */
         Bundle data = getIntent().getExtras();
         if (data!=null) {
-            buildingfromevent = data.getString("buildingFromEvent");
+            buildingFromEvent = data.getString("buildingFromEvent");
         }
 
         /*Obtain the SupportMapFragment and get notified when the map is ready to be used*/
@@ -114,16 +109,16 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
         }
 
         /*Building text and spinner*/
-        buildingtext = (TextView) findViewById(R.id.buildingtext);
-        buildingtext.setText("Choose a building :");
-        buildingchoice = (Spinner) findViewById(R.id.building);
+        buildingText = (TextView) findViewById(R.id.buildingtext);
+        buildingText.setText("Choose a building :");
+        buildingChoice = (Spinner) findViewById(R.id.building);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
                 buildingList
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        buildingchoice.setAdapter(adapter);
+        buildingChoice.setAdapter(adapter);
     }
 
     /**
@@ -147,18 +142,19 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
                 == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
         }
-        /* handle if received a location from events view */
-        if (buildingfromevent != null){
-            choice = buildingfromevent;
+        /*Handle if receives a location from events view */
+        if (buildingFromEvent != null){
+            choice = buildingFromEvent;
             findBuildingByChoice(choice);
         }
+
         /*Search button*/
-        searchbtn = (Button) findViewById(R.id.searchbutton);
-        searchbtn.setText("search");
-        searchbtn.setOnClickListener(new View.OnClickListener() {
+        searchButton = (Button) findViewById(R.id.searchbutton);
+        searchButton.setText("search");
+        searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
-                choice = buildingchoice.getSelectedItem().toString();
+                choice = buildingChoice.getSelectedItem().toString();
                 findBuildingByChoice(choice);
             }
         });
@@ -182,12 +178,10 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
             pos.remove();
         }
         pos = myMap.addMarker(new MarkerOptions().position(latlng).title(view));
-        /* remove camera to center in case of */
+        /*Remove camera to center again*/
         float zoom = 15.4f;
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(ruc,zoom);
         mMap.animateCamera(cameraUpdate);
-
-
     }
 
     public void findBuildingByChoice(String choice){
@@ -196,21 +190,21 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
 
         for (final String building: buildingList ){
 
-            if (mychoice.matches("^-?\\d+$") && building.matches("^-?\\d+$")){ // if choice is building number
+            if (mychoice.matches("^-?\\d+$") && building.matches("^-?\\d+$")){ // if choice is a building number
                 if (Integer.parseInt(mychoice) == Integer.parseInt(building)){
                     newMarker(positionList.get(i), mychoice ,mMap);
                 }
             }else {// if choice is a building name
                 if (building.equals(mychoice)){
-                    if (mychoice.equals("ruc")){ // for initial position we dont add marker and just recenter map
-                        if (pos != null){ // and we remove previous position if exist to prevent misunderstanding in frontend
+                    if (mychoice.equals("ruc")){ // for initial position we don't add marker and just center again the map
+                        if (pos != null){ // and we remove previous position if exists, to prevent misunderstanding in frontend
                             pos.remove();
                         }
                         float zoom = 15.4f;
                         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(ruc,zoom);
                         mMap.animateCamera(cameraUpdate);
                     }else if (mychoice.equals("rockwool")){
-                        newMarker(positionList.get(i), mychoice, mMap); // we move a bit the camera because building are out of zoom
+                        newMarker(positionList.get(i), mychoice, mMap); // we move a bit the camera because the building is out of zoom
                         float zoom = 14.9f;
                         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(ruc,zoom);
                         mMap.animateCamera(cameraUpdate);

@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Check if they are passed events in the Event table
         checkEventsDate();
     }
 

@@ -68,6 +68,7 @@ public class EventsActivity extends AppCompatActivity {
 
         /*Name editText*/
         editTextName = (EditText) findViewById(R.id.name);
+
         /*DatePicker*/
         myCalendar = Calendar.getInstance();
         editTextDate = (EditText) findViewById(R.id.date);
