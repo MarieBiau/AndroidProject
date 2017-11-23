@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_add_note_or_pictures"
+    android:id="@+id/activity_note_and_picture"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:weightSum="2"
-    tools:context="fr.android.app.androidproject.PostEvents.AddNoteOrPicturesActivity">
+    tools:context="fr.android.app.androidproject.PostEvents.NoteAndPictureActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -31,30 +31,30 @@
             />
 
         <ImageView
-                    android:id="@+id/add_pictures"
-                    android:layout_width="match_parent"
-                    android:layout_height="130dp"
+            android:id="@+id/add_pictures"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
             android:layout_gravity="center"
             android:src="@drawable/image"
-                    android:gravity="center"
-                    android:textSize="18sp"
-             />
+            android:gravity="center"
+            android:textSize="18sp"
+            />
 
         <TextView
-                    android:id="@+id/add_note"
-                    android:layout_width="match_parent"
-                    android:layout_height="133dp"
+            android:id="@+id/add_note"
+            android:layout_width="match_parent"
+            android:layout_height="133dp"
             android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textSize="18sp"
-          />
+            android:gravity="center"
+            android:textSize="18sp"
+            />
 
         <Button
             android:text="Button"
             android:id="@id/backbutton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-             />
+            />
 
     </LinearLayout>
 

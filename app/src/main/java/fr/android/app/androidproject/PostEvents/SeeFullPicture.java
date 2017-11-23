@@ -45,7 +45,7 @@ public class SeeFullPicture extends AppCompatActivity {
         backButton.setText("Back");
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(SeeFullPicture.this, AddNoteOrPicturesActivity.class);
+                Intent intent = new Intent(SeeFullPicture.this, NoteAndPictureActivity.class);
                 startActivity(intent);
             }
         });

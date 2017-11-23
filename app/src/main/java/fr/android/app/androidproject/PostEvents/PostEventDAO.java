@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import java.util.Arrays;
+
 import fr.android.app.androidproject.DAOBase;
 
 import static fr.android.app.androidproject.DatabaseHandler.EVENT_DATE;
@@ -24,19 +26,20 @@ public class PostEventDAO extends DAOBase {
         values.put(EVENT_NAME, postevent.getName());
         values.put(EVENT_DATE, postevent.getDate());
         values.put(EVENT_NOTE, postevent.getNote());
-        values.put(EVENT_PICTURES, String.valueOf(postevent.getPictures()));
+        values.put(EVENT_PICTURES, Arrays.toString(postevent.getPictures()));
         return mDb.insert(POSTEVENT_TABLE_NAME, null, values) > 0;
     }
 
-    public void updatePostEvent (String note, int id){
+    public void updatePostEvent(String note, int id){
         ContentValues values = new ContentValues();
         values.put(EVENT_NOTE, note);
-        mDb.update(POSTEVENT_TABLE_NAME,values,"id="+ id,null);
+        mDb.update(POSTEVENT_TABLE_NAME, values, "id="+ id, null);
     }
-    public void updatePostEventPic (byte[] img, int id){
+
+    public void updatePostEventPic(byte[] img, int id){
         ContentValues values = new ContentValues();
         values.put(EVENT_PICTURES, img);
-        mDb.update(POSTEVENT_TABLE_NAME,values,"id="+ id,null);
+        mDb.update(POSTEVENT_TABLE_NAME, values, "id="+ id, null);
     }
 
     public Cursor getPostEventCursor(int id){
@@ -47,18 +50,16 @@ public class PostEventDAO extends DAOBase {
         return mDb.delete(POSTEVENT_TABLE_NAME, EVENT_ID + " = ?", new String[] {String.valueOf(id)}) > 0;
     }
 
-    public boolean deletePostEventImg(int id){ // actually just update it to null
+    public boolean deletePostEventImg(int id){
         ContentValues values = new ContentValues();
         values.put(EVENT_PICTURES, (byte[]) null);
-        mDb.update(POSTEVENT_TABLE_NAME,values,"id="+ id,null);
-        return true;
+        return mDb.update(POSTEVENT_TABLE_NAME,values,"id="+ id,null) > 0;
     }
 
-    public boolean deletePostEventNote(int id) { // actually just updatz it to null
+    public boolean deletePostEventNote(int id) {
         ContentValues values = new ContentValues();
         values.put(EVENT_NOTE, (byte[]) null);
-        mDb.update(POSTEVENT_TABLE_NAME,values,"id="+ id,null);
-        return true;
+        return mDb.update(POSTEVENT_TABLE_NAME,values,"id="+ id,null) > 0;
     }
 
     public Cursor getAllPostEventsCursor() {

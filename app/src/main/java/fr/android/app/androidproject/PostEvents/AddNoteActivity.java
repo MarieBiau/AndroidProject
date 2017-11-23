@@ -49,9 +49,9 @@ public class AddNoteActivity extends AppCompatActivity {
                     if (Integer.toString(idpostevent) != null) {
                         postsEventDAO.updatePostEvent(editTextNote.getText().toString(), idpostevent);
                     }
-                    Intent intent = new Intent(AddNoteActivity.this, AddNoteOrPicturesActivity.class);
+                    Intent intent = new Intent(AddNoteActivity.this, NoteAndPictureActivity.class);
                     if (Integer.toString(idpostevent) != null) {
-                        intent.putExtra("idfrompostevent",  String.valueOf(idpostevent));
+                        intent.putExtra("idFromPostEvent",  String.valueOf(idpostevent));
                     }
                     startActivity(intent);
                 }else{
@@ -64,9 +64,9 @@ public class AddNoteActivity extends AppCompatActivity {
         backButton.setText("Back");
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(AddNoteActivity.this, AddNoteOrPicturesActivity.class);
+                Intent intent = new Intent(AddNoteActivity.this, NoteAndPictureActivity.class);
                 if (Integer.toString(idpostevent) != null) {
-                    intent.putExtra("idfrompostevent",  String.valueOf(idpostevent));
+                    intent.putExtra("idFromPostEvent",  String.valueOf(idpostevent));
                 }
                 startActivity(intent);
             }
