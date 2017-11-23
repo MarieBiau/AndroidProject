@@ -42,6 +42,13 @@ public class PostEventDAO extends DAOBase {
         return mDb.delete(POSTEVENT_TABLE_NAME, EVENT_ID + " = ?", new String[] {String.valueOf(id)}) > 0;
     }
 
+    public boolean deletePostEventNote(int id) { // actually just updatz it to null
+        ContentValues values = new ContentValues();
+        values.put(EVENT_NOTE, (byte[]) null);
+        mDb.update(POSTEVENT_TABLE_NAME,values,"id="+ id,null);
+        return true;
+    }
+
     public Cursor getAllPostEventsCursor() {
         return mDb.rawQuery("select " + "id as _id, name, date" + " from " + POSTEVENT_TABLE_NAME + " order by date", null);
     }

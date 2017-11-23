@@ -1,5 +1,7 @@
 package fr.android.app.androidproject.PostEvents;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -7,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import fr.android.app.androidproject.Events.EventDAO;
 import fr.android.app.androidproject.R;
@@ -21,6 +24,7 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
     Cursor myCursor;
     String note;
     PostEventDAO postsEventDAO;
+    final boolean[] notechanged = new boolean[1];
     EventDAO eventDAO;
 
     @Override
@@ -39,48 +43,52 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
         textBlocAddPictures = (TextView) findViewById(R.id.add_pictures);
 
         /* ask database to retreive the associated event */
-        postsEventDAO = new PostEventDAO(getApplicationContext());
-        postsEventDAO.open();
-
-        if (Integer.toString(idpostevent) != null) {
-//// TODO: 22/11/2017 FOR NOW
-            /*myCursor = postsEventDAO.getAllPostEventsCursor();
-            startManagingCursor(myCursor);
-            Log.d("testazazazazazazaza", String.valueOf(myCursor.getColumnIndex(EVENT_NAME)));
-            Log.d("testazazazazazazaza", String.valueOf(myCursor.getColumnIndex(EVENT_NOTE)));
-            note = myCursor.getString(0);*/
-            myCursor = postsEventDAO.getPostEventCursor(idpostevent);
-            Log.d("number of return", String.valueOf(myCursor.getColumnCount()));
-            startManagingCursor(myCursor);
-            if (!myCursor.moveToFirst())
-                myCursor.moveToFirst();
+        if (!(notechanged[0])) { // we dont do that if the user have erased the note earlier
+            postsEventDAO = new PostEventDAO(getApplicationContext());
+            postsEventDAO.open();
+            if (Integer.toString(idpostevent) != null) {
+                myCursor = postsEventDAO.getPostEventCursor(idpostevent);
+                Log.d("number of return", String.valueOf(myCursor.getColumnCount()));
+                startManagingCursor(myCursor);
+                if (!myCursor.moveToFirst())
+                    myCursor.moveToFirst();
 //            Log.d("test value", myCursor.getString(myCursor.getColumnIndex(EVENT_NOTE)));
-            note = myCursor.getString(myCursor.getColumnIndex(EVENT_NOTE));
+                note = myCursor.getString(myCursor.getColumnIndex(EVENT_NOTE));
+            }
         }
 
         if (note == null){
             textBlocAddNote.setText("Add note");
+
             textBlocAddNote.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+
                     Intent intent = new Intent(AddNoteOrPicturesActivity.this, AddNoteActivity.class);
                     if (Integer.toString(idpostevent) != null) {
                         intent.putExtra("posteventid", String.valueOf(idpostevent));
                     }
                     startActivity(intent);
+
                 }
             });
 
         }else{
             textBlocAddNote.setText(note);
-            textBlocAddNote.setOnLongClickListener(new View.OnLongClickListener() {
+            textBlocAddNote.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public boolean onLongClick(View v) {
+                public void onClick(View v) {
                     Intent intent = new Intent(AddNoteOrPicturesActivity.this, AddNoteActivity.class);
                     if (Integer.toString(idpostevent) != null) {
                         intent.putExtra("posteventid", String.valueOf(idpostevent));
                         intent.putExtra("notevalue",note);
                     }
                     startActivity(intent);
+                }
+            });
+            textBlocAddNote.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    boolean test = deleteConfirmation(idpostevent);
                     return true;
                 }
             });
@@ -102,4 +110,35 @@ public class AddNoteOrPicturesActivity extends AppCompatActivity {
         });
     }
 
+    /*Delete notes confirmation*/
+    private boolean deleteConfirmation(final int id)
+    {
+        AlertDialog mDialogBox = new AlertDialog.Builder(this)
+                .setTitle("Delete")
+                .setMessage("Do you want to delete the note ? ( short click to modify it )")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        postsEventDAO = new PostEventDAO(getApplicationContext());
+                        postsEventDAO.open();
+                        postsEventDAO.deletePostEventNote(id);
+                        textBlocAddNote.setText("Add note");
+                        notechanged[0]= true; // for refreshing page
+                        finish();
+                        startActivity(getIntent());
+                        getIntent().putExtra("idfrompostevent", idpostevent);
+                        Toast.makeText(AddNoteOrPicturesActivity.this, "Note Deleted", Toast.LENGTH_SHORT).show();
+                        //dialog.dismiss();
+
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        notechanged[0]= false;
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+      mDialogBox.show();
+    return notechanged[0];
+    }
 }

@@ -70,6 +70,9 @@ public class AddNoteActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(AddNoteActivity.this, AddNoteOrPicturesActivity.class);
+                if (Integer.toString(idpostevent) != null) {
+                    intent.putExtra("idfrompostevent",  String.valueOf(idpostevent));
+                }
                 startActivity(intent);
             }
         });
