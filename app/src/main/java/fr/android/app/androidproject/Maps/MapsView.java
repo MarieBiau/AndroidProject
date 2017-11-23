@@ -138,10 +138,11 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
         float zoom = 15.4f;
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(ruc,zoom);
         mMap.animateCamera(cameraUpdate);
-        // TODO: 30/10/2017 use API from google to get latlng 
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
@@ -151,7 +152,6 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
             choice = buildingfromevent;
             findBuildingByChoice(choice);
         }
-
         /*Search button*/
         searchbtn = (Button) findViewById(R.id.searchbutton);
         searchbtn.setText("search");
@@ -225,8 +225,6 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
             }
             i++; // add to transition position list
         }
-
-
     }
 
 }
