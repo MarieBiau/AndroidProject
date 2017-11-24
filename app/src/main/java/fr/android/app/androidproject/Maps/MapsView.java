@@ -42,7 +42,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
 
     public static List<String> buildingList = Arrays.asList("ruc","0","1","2","3","4","5","6","7","8","9",
             "10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28",
-            "36","37","38","40","41","42","43","44","45","46","korallen","kolibrien","rockwool");
+            "36","37","38","40","41","42","43","44","45","46","koralen","kolibrien","rockwool");
     public static ArrayList<LatLng> positionList = new ArrayList<LatLng>() {{
         add(new LatLng(55.652622, 12.139827));// ruc default centered map
         add(new LatLng(55.653657, 12.138663)); // 0 to 28
