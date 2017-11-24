@@ -16,11 +16,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/RUC_icons"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".Main.MainActivity" >
+        <activity
+            android:name=".Main.MainActivity"
+            android:label="@string/title_activity_main_view">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -29,13 +31,27 @@
         <activity
             android:name=".Maps.MapsView"
             android:label="@string/title_activity_maps_view" />
-        <activity android:name=".Events.EventsView" />
-        <activity android:name=".Events.EventsActivity" />
-        <activity android:name=".PostEvents.PostEventsView" />
-        <activity android:name=".PostEvents.NoteAndPictureActivity" />
-        <activity android:name=".PostEvents.AddNoteActivity" />
-        <activity android:name=".PostEvents.AddPictureActivity" />
-        <activity android:name=".PostEvents.SeeFullPictureActivity" />
+        <activity
+            android:name=".Events.EventsView"
+            android:label="@string/title_activity_events_view" />
+        <activity
+            android:name=".Events.EventsActivity"
+            android:label="@string/title_activity_events_add" />
+        <activity
+            android:name=".PostEvents.PostEventsView"
+            android:label="@string/title_activity_postevents_view" />
+        <activity
+            android:name=".PostEvents.NoteAndPictureActivity"
+            android:label="@string/title_activity_note_and_picture" />
+        <activity
+            android:name=".PostEvents.AddNoteActivity"
+            android:label="@string/title_activity_add_note" />
+        <activity
+            android:name=".PostEvents.AddPictureActivity"
+            android:label="@string/title_activity_add_picture" />
+        <activity
+            android:name=".PostEvents.SeeFullPictureActivity"
+            android:label="@string/title_activity_see_full_picture" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
