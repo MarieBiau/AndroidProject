@@ -40,7 +40,7 @@ public class EventsActivity extends AppCompatActivity {
 
         /*Ok button*/
         okButton = (Button) findViewById(R.id.okbutton);
-        okButton.setText("OK");
+        okButton.setText(R.string.ok_string);
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if ( editTextName.getText().toString().trim().length() != 0 && editTextDate.getText().toString().trim().length() != 0) {
@@ -58,7 +58,7 @@ public class EventsActivity extends AppCompatActivity {
 
         /*Back button*/
         backButton = (Button) findViewById(R.id.backbutton);
-        backButton.setText("Back");
+        backButton.setText(R.string.back_string);
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(EventsActivity.this, EventsView.class);

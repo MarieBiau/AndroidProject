@@ -10,4 +10,8 @@
     <string name="title_activity_add_note">Add note</string>
     <string name="title_activity_add_picture">Add picture</string>
     <string name="title_activity_see_full_picture">See picture</string>
+
+    <string name="ok_string">ok</string>
+    <string name="back_string">back</string>
+    <string name="plus_string">+</string>
 </resources>

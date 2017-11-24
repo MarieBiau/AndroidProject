@@ -39,7 +39,7 @@ public class EventsView extends ListActivity {
 
         /*Plus button*/
         plusButton = (Button) findViewById(R.id.plusbutton);
-        plusButton.setText("+");
+        plusButton.setText(R.string.plus_string);
         plusButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(EventsView.this, EventsActivity.class);
@@ -49,7 +49,7 @@ public class EventsView extends ListActivity {
 
         /*Back button*/
         backButton = (Button) findViewById(R.id.backbutton);
-        backButton.setText("Back");
+        backButton.setText(R.string.back_string);
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                     Intent intent = new Intent(EventsView.this, MainActivity.class);
@@ -78,7 +78,7 @@ public class EventsView extends ListActivity {
                 String name = eventsCursor.getString(eventsCursor.getColumnIndex(EVENT_NAME));
                 deleteConfirmation((int)id, name);
                 return true;
-            }
+            }c
         });
     }
 
