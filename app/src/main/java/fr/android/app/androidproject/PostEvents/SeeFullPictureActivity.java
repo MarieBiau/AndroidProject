@@ -13,8 +13,7 @@ import java.io.ByteArrayOutputStream;
 
 import fr.android.app.androidproject.R;
 
-
-public class SeeFullPicture extends AppCompatActivity {
+public class SeeFullPictureActivity extends AppCompatActivity {
 
     int idpostevent;
     byte[] image;
@@ -25,10 +24,10 @@ public class SeeFullPicture extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_see_full_picture);
 
-        /* get data from post events view */
+        /*Get data from post events view */
         Bundle data = getIntent().getExtras();
         if (data!=null) {
-            idpostevent = Integer.parseInt(data.getString("posteventid"));
+            idpostevent = Integer.parseInt(data.getString("postEventId"));
             image = (byte[]) data.get("img");
         }
 
@@ -44,7 +43,7 @@ public class SeeFullPicture extends AppCompatActivity {
         backButton.setText("Back");
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(SeeFullPicture.this, NoteAndPictureActivity.class);
+                Intent intent = new Intent(SeeFullPictureActivity.this, NoteAndPictureActivity.class);
                 if (Integer.toString(idpostevent) != null) {
                     intent.putExtra("idFromPostEvent",  String.valueOf(idpostevent));
                 }

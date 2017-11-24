@@ -35,7 +35,7 @@
         <activity android:name=".PostEvents.NoteAndPictureActivity" />
         <activity android:name=".PostEvents.AddNoteActivity" />
         <activity android:name=".PostEvents.AddPictureActivity" />
-        <activity android:name=".PostEvents.SeeFullPicture" />
+        <activity android:name=".PostEvents.SeeFullPictureActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

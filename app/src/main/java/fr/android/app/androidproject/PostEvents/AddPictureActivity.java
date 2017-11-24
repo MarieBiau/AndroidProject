@@ -20,84 +20,78 @@ import fr.android.app.androidproject.R;
 public class AddPictureActivity extends AppCompatActivity {
 
     private static final int SELECT_PICTURE = 1;
-    private String selectedImagePath;
-    ImageView imgview;
-    int idpostevent;
     Button okButton;
     Button backButton;
+    int idPostEvent;
     byte[] byteArray;
+    private String selectedImagePath;
+    ImageView imgView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pictures);
 
-        /* set variables */
-        imgview = (ImageView)findViewById(R.id.imageView);
-        okButton = (Button) findViewById(R.id.okbutton);
-        backButton = (Button) findViewById(R.id.backbutton);
-
-        /* get data from addnotorpicture*/
+        /*Get data from NoteAndPictureActivity*/
         Bundle data = getIntent().getExtras();
         if (data!=null) {
-            idpostevent = Integer.parseInt(data.getString("posteventid"));
+            idPostEvent = Integer.parseInt(data.getString("postEventId"));
         }
 
-        /* ask new photo*/
+        /*Ask for a new photo*/
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,
                 "Select Picture"), SELECT_PICTURE);
 
-        /* ok button */
+        /*Ok button*/
+        okButton = (Button) findViewById(R.id.okbutton);
         okButton.setText("OK");
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //if ( editTextNote.getText().toString().trim().length() != 0 ) {
                     PostEventDAO postsEventDAO = new PostEventDAO(getApplicationContext());
                     postsEventDAO.open();
-                    if (Integer.toString(idpostevent) != null) {
+                    if (Integer.toString(idPostEvent) != null) {
                         if (byteArray != null) {
-                            postsEventDAO.updatePostEventPic(byteArray, idpostevent);
+                            postsEventDAO.updatePostEventPic(byteArray, idPostEvent);
                         }else{
                             Toast.makeText(getBaseContext(),"No picture added - make sure to add one",Toast.LENGTH_LONG).show();
                         }
                     }
                     Intent intent = new Intent(AddPictureActivity.this, NoteAndPictureActivity.class);
-                    if (Integer.toString(idpostevent) != null) {
-                        intent.putExtra("idFromPostEvent",  String.valueOf(idpostevent));
+                    if (Integer.toString(idPostEvent) != null) {
+                        intent.putExtra("idFromPostEvent",  String.valueOf(idPostEvent));
                     }
                     startActivity(intent);
-                /*}else{
-                    Toast.makeText(getBaseContext(),"Please check if all fields are completed",Toast.LENGTH_LONG).show();
-                }*/
             }
         });
 
-
-
-
-        /* backbutton */
+        /*Back button*/
+        backButton = (Button) findViewById(R.id.backbutton);
         backButton.setText("Back");
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(AddPictureActivity.this, NoteAndPictureActivity.class);
-                if (Integer.toString(idpostevent) != null) {
-                    intent.putExtra("idFromPostEvent",  String.valueOf(idpostevent));
+                if (Integer.toString(idPostEvent) != null) {
+                    intent.putExtra("idFromPostEvent",  String.valueOf(idPostEvent));
                 }
                 startActivity(intent);
             }
         });
 
+        /*ImageView*/
+        imgView = (ImageView)findViewById(R.id.imageView);
     }
+
+    /*Get image and insert it in the ImageView*/
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_PICTURE) {
                 Uri selectedImageUri = data.getData();
                 selectedImagePath = getPath(selectedImageUri);
                 Bitmap yourSelectedImage = BitmapFactory.decodeFile(selectedImagePath);
-
-                imgview.setImageBitmap(yourSelectedImage);
+                imgView.setImageBitmap(yourSelectedImage);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 yourSelectedImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byteArray = stream.toByteArray();
@@ -105,14 +99,12 @@ public class AddPictureActivity extends AppCompatActivity {
         }
     }
 
+    /*Get the path of the image*/
     public String getPath(Uri uri) {
-        // just some safety built in
         if( uri == null ) {
-            // TODO perform some logging or show user feedback
             return null;
         }
-        // try to retrieve the image from the media store first
-        // this will only work for images selected from gallery
+        //Try to retrieve the image from the media store, only works for images selected from gallery
         String[] projection = { MediaStore.Images.Media.DATA };
         Cursor cursor = managedQuery(uri, projection, null, null, null);
         if( cursor != null ){
@@ -123,7 +115,7 @@ public class AddPictureActivity extends AppCompatActivity {
             cursor.close();
             return path;
         }
-        // this is our fallback here
         return uri.getPath();
     }
+
 }

@@ -27,7 +27,6 @@ import static fr.android.app.androidproject.DatabaseHandler.EVENT_NAME;
 public class PostEventsView extends ListActivity {
 
     Button backButton;
-    Button noteAndPictureButton;
     ListView mListView;
     PostEventDAO postEventDAO;
     Cursor postEventsCursor;
@@ -44,18 +43,6 @@ public class PostEventsView extends ListActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(PostEventsView.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        /*Note & picture button*/
-        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.activity_postevents_view_list, null);
-        noteAndPictureButton = (Button) rowView.findViewById(R.id.note_and_picture_button);
-        noteAndPictureButton.setText("Note & picture");
-        noteAndPictureButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(PostEventsView.this, NoteAndPictureActivity.class);
                 startActivity(intent);
             }
         });
@@ -108,6 +95,7 @@ public class PostEventsView extends ListActivity {
         mDialogBox.show();
     }
 
+    /*CursorAdapter for the noteAndPictureButton*/
     private class MyCursorAdapter extends SimpleCursorAdapter {
 
         MyCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags) {
@@ -122,7 +110,7 @@ public class PostEventsView extends ListActivity {
 
             TextView tv1 = (TextView) view.findViewById(R.id.name);
             TextView tv2 = (TextView) view.findViewById(R.id.date);
-            Button btn = (Button) view.findViewById(R.id.note_and_picture_button);
+            Button noteAndPictureButton = (Button) view.findViewById(R.id.note_and_picture_button);
 
             final int s3 = cursor.getInt(idCln);
             String s1 = cursor.getString(nameCln);
@@ -131,12 +119,11 @@ public class PostEventsView extends ListActivity {
             tv1.setText(s1);
             tv2.setText(s2);
 
-            btn.setClickable(true);
-            btn.setOnClickListener(new View.OnClickListener() {
+            noteAndPictureButton.setClickable(true);
+            noteAndPictureButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(PostEventsView.this, NoteAndPictureActivity.class);
-                    Log.d("test1", String.valueOf(s3));
                     intent.putExtra("idFromPostEvent",String.valueOf(s3));
                     startActivity(intent);
                 }

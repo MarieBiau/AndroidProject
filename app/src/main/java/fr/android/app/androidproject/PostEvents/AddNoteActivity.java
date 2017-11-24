@@ -15,43 +15,35 @@ public class AddNoteActivity extends AppCompatActivity {
     Button okButton;
     Button backButton;
     EditText editTextNote;
-    int idpostevent;
-    String notevalue;
+    int idPostEvent;
+    String noteValue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
 
-        /* get data from addnotorpicture*/
+        /*Get data from NoteAndPictureActivity*/
         Bundle data = getIntent().getExtras();
         if (data!=null) {
-            idpostevent = Integer.parseInt(data.getString("posteventid"));
-            notevalue = data.getString("notevalue");
+            idPostEvent = Integer.parseInt(data.getString("postEventId"));
+            noteValue = data.getString("noteValue");
         }
 
-        /* set variables */
+        /*Ok button*/
         okButton = (Button) findViewById(R.id.okbutton);
-        backButton = (Button) findViewById(R.id.backbutton);
-        editTextNote = (EditText) findViewById(R.id.note);
-
-         /* if there is already a note we show note for modification */
-        if (notevalue != null){
-            editTextNote.setText(notevalue);
-        }
-
-        /*okbutton*/
         okButton.setText("OK");
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if ( editTextNote.getText().toString().trim().length() != 0 ) {
                     PostEventDAO postsEventDAO = new PostEventDAO(getApplicationContext());
                     postsEventDAO.open();
-                    if (Integer.toString(idpostevent) != null) {
-                        postsEventDAO.updatePostEvent(editTextNote.getText().toString(), idpostevent);
+                    if (Integer.toString(idPostEvent) != null) {
+                        postsEventDAO.updatePostEvent(editTextNote.getText().toString(), idPostEvent);
                     }
                     Intent intent = new Intent(AddNoteActivity.this, NoteAndPictureActivity.class);
-                    if (Integer.toString(idpostevent) != null) {
-                        intent.putExtra("idFromPostEvent",  String.valueOf(idpostevent));
+                    if (Integer.toString(idPostEvent) != null) {
+                        intent.putExtra("idFromPostEvent",  String.valueOf(idPostEvent));
                     }
                     startActivity(intent);
                 }else{
@@ -60,19 +52,24 @@ public class AddNoteActivity extends AppCompatActivity {
             }
         });
 
-        /* backbutton */
+        /*Back button*/
+        backButton = (Button) findViewById(R.id.backbutton);
         backButton.setText("Back");
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(AddNoteActivity.this, NoteAndPictureActivity.class);
-                if (Integer.toString(idpostevent) != null) {
-                    intent.putExtra("idFromPostEvent",  String.valueOf(idpostevent));
+                if (Integer.toString(idPostEvent) != null) {
+                    intent.putExtra("idFromPostEvent",  String.valueOf(idPostEvent));
                 }
                 startActivity(intent);
             }
         });
 
-
+        /*Note editText*/
+        editTextNote = (EditText) findViewById(R.id.note);
+        if (noteValue != null){     //If there is already a note we show the note for modification
+            editTextNote.setText(noteValue);
+        }
 
     }
 

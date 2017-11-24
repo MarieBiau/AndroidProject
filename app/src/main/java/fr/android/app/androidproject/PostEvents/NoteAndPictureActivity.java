@@ -27,14 +27,14 @@ public class NoteAndPictureActivity extends AppCompatActivity {
     Button backButton;
     TextView textBlocAddNote;
     ImageView textBlocAddPictures;
-    TextView textpic;
+    TextView textPicture;
     TextView textBlocTitle;
     PostEventDAO postsEventDAO;
-    int idpostevent;
+    int idPostEvent;
     Cursor myCursor;
     String name;
     String note;
-    byte[] imgPtr;
+    byte[] image;
     final boolean[] noteChanged = new boolean[1];
 
     @Override
@@ -45,10 +45,10 @@ public class NoteAndPictureActivity extends AppCompatActivity {
         /*Get data from PostEventsView */
         Bundle data = getIntent().getExtras();
         if (data!=null) {
-            idpostevent = Integer.parseInt(data.getString("idFromPostEvent"));
+            idPostEvent = Integer.parseInt(data.getString("idFromPostEvent"));
         }
 
-        /*Back button */
+        /*Back button*/
         backButton = (Button) findViewById(R.id.backbutton);
         backButton.setText("Back");
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -62,23 +62,24 @@ public class NoteAndPictureActivity extends AppCompatActivity {
         textBlocTitle = (TextView)  findViewById(R.id.title);
         textBlocAddNote = (TextView) findViewById(R.id.add_note);
         textBlocAddPictures = (ImageView) findViewById(R.id.add_pictures);
-        textpic = (TextView) findViewById(R.id.text_pictures);
+        textPicture = (TextView) findViewById(R.id.text_pictures);
 
         /*Ask database to retrieve the associated event */
         if (!(noteChanged[0])) {    //If the user has not erased the note earlier
             postsEventDAO = new PostEventDAO(getApplicationContext());
             postsEventDAO.open();
-            if (Integer.toString(idpostevent) != null) {
-                myCursor = postsEventDAO.getPostEventCursor(idpostevent);
+            if (Integer.toString(idPostEvent) != null) {
+                myCursor = postsEventDAO.getPostEventCursor(idPostEvent);
                 startManagingCursor(myCursor);
                 if (!myCursor.moveToFirst())
                     myCursor.moveToFirst();
                 note = myCursor.getString(myCursor.getColumnIndex(EVENT_NOTE));
                 name = myCursor.getString(myCursor.getColumnIndex(EVENT_NAME));
-                imgPtr = myCursor.getBlob(myCursor.getColumnIndex(EVENT_PICTURES));
+                image = myCursor.getBlob(myCursor.getColumnIndex(EVENT_PICTURES));
             }
         }
         textBlocTitle.setText("Event : " + name);
+
         if (note == null){        //If there is no note
             textBlocAddNote.setText("Add note");
 
@@ -86,22 +87,23 @@ public class NoteAndPictureActivity extends AppCompatActivity {
                 public void onClick(View v) {
 
                     Intent intent = new Intent(NoteAndPictureActivity.this, AddNoteActivity.class);
-                    if (Integer.toString(idpostevent) != null) {
-                        intent.putExtra("posteventid", String.valueOf(idpostevent));
+                    if (Integer.toString(idPostEvent) != null) {
+                        intent.putExtra("postEventId", String.valueOf(idPostEvent));
                     }
                     startActivity(intent);
 
                 }
             });
+
         } else {    //If there is already a note
             textBlocAddNote.setText(note);
             textBlocAddNote.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(NoteAndPictureActivity.this, AddNoteActivity.class);
-                    if (Integer.toString(idpostevent) != null) {
-                        intent.putExtra("posteventid", String.valueOf(idpostevent));
-                        intent.putExtra("notevalue",note);
+                    if (Integer.toString(idPostEvent) != null) {
+                        intent.putExtra("postEventId", String.valueOf(idPostEvent));
+                        intent.putExtra("noteValue",note);
                     }
                     startActivity(intent);
                 }
@@ -109,37 +111,37 @@ public class NoteAndPictureActivity extends AppCompatActivity {
             textBlocAddNote.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    boolean test = deleteConfirmation(idpostevent);
-                    return true;
+                    return deleteConfirmation(idPostEvent);
                 }
             });
         }
 
-        if (imgPtr == null || BitmapFactory.decodeByteArray(imgPtr, 0, imgPtr.length) == null){
-            textpic.setText("Add Picture");
+        /*If there is no picture*/
+        if (image == null || BitmapFactory.decodeByteArray(image, 0, image.length) == null){
+            textPicture.setText("Add Picture");
             textBlocAddPictures.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(NoteAndPictureActivity.this, AddPictureActivity.class);
-                    if (Integer.toString(idpostevent) != null) {
-                        intent.putExtra("posteventid", String.valueOf(idpostevent));
+                    if (Integer.toString(idPostEvent) != null) {
+                        intent.putExtra("postEventId", String.valueOf(idPostEvent));
                     }
                     startActivity(intent);
                 }
             });
 
-        } else {
-            textpic.setText("");
-            Bitmap img = BitmapFactory.decodeByteArray(imgPtr, 0, imgPtr.length);
+        } else {    /*If there  is already a picture*/
+            textPicture.setText("");
+            Bitmap img = BitmapFactory.decodeByteArray(image, 0, image.length);
             textBlocAddPictures.setImageBitmap(img);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             img.compress(Bitmap.CompressFormat.PNG, 100, stream);
             textBlocAddPictures.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(NoteAndPictureActivity.this, SeeFullPicture.class);
-                    if (Integer.toString(idpostevent) != null) {
-                        intent.putExtra("posteventid", String.valueOf(idpostevent));
-                        intent.putExtra("img", imgPtr);
+                    Intent intent = new Intent(NoteAndPictureActivity.this, SeeFullPictureActivity.class);
+                    if (Integer.toString(idPostEvent) != null) {
+                        intent.putExtra("postEventId", String.valueOf(idPostEvent));
+                        intent.putExtra("img", image);
                     }
                     startActivity(intent);
                 }
@@ -147,7 +149,7 @@ public class NoteAndPictureActivity extends AppCompatActivity {
             textBlocAddPictures.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    deleteimgConfirmation(idpostevent);
+                    deleteImageConfirmation(idPostEvent);
                     return true;
                 }
             });
@@ -155,7 +157,7 @@ public class NoteAndPictureActivity extends AppCompatActivity {
 
     }
 
-    /*Delete notes confirmation*/
+    /*Delete note confirmation*/
     private boolean deleteConfirmation(final int id)
     {
         AlertDialog mDialogBox = new AlertDialog.Builder(this)
@@ -167,10 +169,10 @@ public class NoteAndPictureActivity extends AppCompatActivity {
                         postsEventDAO.open();
                         postsEventDAO.deletePostEventNote(id);
                         textBlocAddNote.setText("Add note");
-                        noteChanged[0]= true; // for refreshing page
+                        noteChanged[0]= true;   //On refreshing the page
                         finish();
                         startActivity(getIntent());
-                        getIntent().putExtra("idFromPostEvent", idpostevent);
+                        getIntent().putExtra("idFromPostEvent", idPostEvent);
                         Toast.makeText(NoteAndPictureActivity.this, "Note Deleted", Toast.LENGTH_SHORT).show();
 
                     }
@@ -186,7 +188,7 @@ public class NoteAndPictureActivity extends AppCompatActivity {
         return noteChanged[0];
     }
 
-    private void deleteimgConfirmation(final int id) {
+    private void deleteImageConfirmation(final int id) {
         AlertDialog mDialogBox = new AlertDialog.Builder(this)
                 .setTitle("Delete")
                 .setMessage("Do you want to delete the image ? ")
@@ -197,7 +199,7 @@ public class NoteAndPictureActivity extends AppCompatActivity {
                         postsEventDAO.deletePostEventImg(id);
                         finish();
                         startActivity(getIntent());
-                        getIntent().putExtra("idFromPostEvent", idpostevent);
+                        getIntent().putExtra("idFromPostEvent", idPostEvent);
                         Toast.makeText(NoteAndPictureActivity.this, "Image Deleted", Toast.LENGTH_SHORT).show();
 
                     }
