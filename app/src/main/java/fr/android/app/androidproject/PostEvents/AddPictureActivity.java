@@ -30,7 +30,7 @@ public class AddPictureActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_pictures);
+        setContentView(R.layout.activity_add_picture);
 
         /*Get data from NoteAndPictureActivity*/
         Bundle data = getIntent().getExtras();
