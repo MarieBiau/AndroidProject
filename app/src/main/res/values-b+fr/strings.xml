@@ -24,19 +24,19 @@
     <string name="addnote">Ajouter une note</string>
     <string name="addpicture">Ajouter une photo</string>
 
-    <string name="addnotehint">Add your note here</string>
-    <string name="eventnamehint">Event name</string>
-    <string name="eventdatehint">Event date</string>
-    <string name="eventlochint">Event location</string>
-    <string name="seemaphint">See on map</string>
+    <string name="addnotehint">Ajoutez votre note ici</string>
+    <string name="eventnamehint">Nom de l\'évènement</string>
+    <string name="eventdatehint">Date de l\'évènement</string>
+    <string name="eventlochint">Localisation de l\'évènement</string>
+    <string name="seemaphint">Voir sur la carte</string>
 
     <string name="yes">Oui</string>
     <string name="no">Non</string>
     <string name="delete">Supprimer</string>
     <string name="selectpic">Choisir une photo</string>
-    <string name="deleteevent">Voulez-vous supprimer l\'évènement </string>
-    <string name="deletenote">Voulez-vous supprimer la note ? ( clic court pour modifier )</string>
-    <string name="deleteimg">Voulez-vous supprimer la note? </string>
+    <string name="deleteevent">Voulez-vous supprimer l\'évènement ?</string>
+    <string name="deletenote">Voulez-vous supprimer la note ? (clic court pour modifier)</string>
+    <string name="deleteimg">Voulez-vous supprimer la note ? </string>
     <string name="checkfield">Merci de vérifier que vous avez complété tous les champs</string>
     <string name="checkinternet">Erreur. Vérifier votre connexion internet</string>
     <string name="nopic">Photo non ajoutée - Merci de vérifier que vous avez selectionné une photo</string>
