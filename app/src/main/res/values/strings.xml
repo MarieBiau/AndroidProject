@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">RUC app</string>
-    <string name="title_activity_main_view">Main page</string>
     <string name="title_activity_maps_view">Maps</string>
     <string name="title_activity_events_view">Events</string>
     <string name="title_activity_events_add">Add event</string>
