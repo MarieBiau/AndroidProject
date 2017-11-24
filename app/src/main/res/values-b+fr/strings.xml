@@ -17,7 +17,7 @@
 
     <string name="gomap">Aller à la Google Map</string>
     <string name="goevent">Aller aux évènements</string>
-    <string name="gopostevent">aller aux évènements passés</string>
+    <string name="gopostevent">Aller aux évènements passés</string>
     <string name="choosebuilding">Choisir un bâtiment :</string>
     <string name="search">Chercher</string>
     <string name="eventcln">Evènement :</string>
