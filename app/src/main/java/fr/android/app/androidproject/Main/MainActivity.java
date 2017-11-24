@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
         textBloc2 = (TextView) findViewById(R.id.textView2);
         textBloc3 = (TextView) findViewById(R.id.textView3);
 
-        textBloc1.setText("Go to Maps");
-        textBloc2.setText("Go to Events");
-        textBloc3.setText("Go to PostEvents");
+        textBloc1.setText(R.string.gomap);
+        textBloc2.setText(R.string.goevent);
+        textBloc3.setText(R.string.gopostevent);
 
         textBloc1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

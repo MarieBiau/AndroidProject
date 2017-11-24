@@ -1,6 +1,5 @@
 package fr.android.app.androidproject.PostEvents;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
@@ -8,8 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -39,7 +36,7 @@ public class PostEventsView extends ListActivity {
 
         /*Back button*/
         backButton = (Button) findViewById(R.id.backbutton);
-        backButton.setText("Back");
+        backButton.setText(R.string.back_string);
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(PostEventsView.this, MainActivity.class);
@@ -75,18 +72,18 @@ public class PostEventsView extends ListActivity {
     private void deleteConfirmation(final int id, String name)
     {
         AlertDialog mDialogBox = new AlertDialog.Builder(this)
-                .setTitle("Delete")
-                .setMessage("Do you want to Delete the event " + name + "?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setTitle(R.string.delete)
+                .setMessage(R.string.deleteevent + name + "?")
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         postEventDAO.deletePostEvent(id);
                         postEventsCursor.requery();
                         mAdapter.notifyDataSetChanged();
-                        Toast.makeText(PostEventsView.this, "Event Deleted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PostEventsView.this, R.string.eventdelete, Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }

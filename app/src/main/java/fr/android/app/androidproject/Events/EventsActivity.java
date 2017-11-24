@@ -51,7 +51,7 @@ public class EventsActivity extends AppCompatActivity {
                     Intent intent = new Intent(EventsActivity.this, EventsView.class);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(getBaseContext(),"Please check if all fields are completed",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),R.string.checkfield,Toast.LENGTH_LONG).show();
                 }
             }
         });

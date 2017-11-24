@@ -78,7 +78,7 @@ public class EventsView extends ListActivity {
                 String name = eventsCursor.getString(eventsCursor.getColumnIndex(EVENT_NAME));
                 deleteConfirmation((int)id, name);
                 return true;
-            }c
+            }
         });
     }
 
@@ -86,18 +86,18 @@ public class EventsView extends ListActivity {
     private void deleteConfirmation(final int id, String name)
     {
         AlertDialog mDialogBox = new AlertDialog.Builder(this)
-                .setTitle("Delete")
-                .setMessage("Do you want to Delete the event " + name + "?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setTitle(R.string.delete)
+                .setMessage(R.string.deleteevent + name + "?")
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         eventDAO.deleteEvent(id);
                         eventsCursor.requery();
                         mAdapter.notifyDataSetChanged();
-                        Toast.makeText(EventsView.this, "Event Deleted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EventsView.this, R.string.eventdelete, Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }

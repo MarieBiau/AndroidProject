@@ -1,2 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">RUC app</string>
+
+    <string name="title_activity_maps_view">Carte</string>
+    <string name="title_activity_events_view">Evènements</string>
+    <string name="title_activity_events_add">Ajouter un évènement</string>
+    <string name="title_activity_postevents_view">Evènements passés</string>
+    <string name="title_activity_note_and_picture">Note &amp; photo</string>
+    <string name="title_activity_add_note">Ajouter une note</string>
+    <string name="title_activity_add_picture">Ajouter une photo</string>
+    <string name="title_activity_see_full_picture">Voir la photo</string>
+
+    <string name="ok_string">ok</string>
+    <string name="back_string">retour</string>
+    <string name="plus_string">+</string>
+
+    <string name="gomap">Aller à la Google Map</string>
+    <string name="goevent">Aller aux évènements</string>
+    <string name="gopostevent">aller aux évènements passés</string>
+    <string name="choosebuilding">Choisir un bâtiment :</string>
+    <string name="search">Chercher</string>
+    <string name="eventcln">Evènement :</string>
+    <string name="addnote">Ajouter une note</string>
+    <string name="addpicture">Ajouter une photo</string>
+
+    <string name="addnotehint">Add your note here</string>
+    <string name="eventnamehint">Event name</string>
+    <string name="eventdatehint">Event date</string>
+    <string name="eventlochint">Event location</string>
+    <string name="seemaphint">See on map</string>
+
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="delete">Supprimer</string>
+    <string name="selectpic">Choisir une photo</string>
+    <string name="deleteevent">Voulez-vous supprimer l\'évènement </string>
+    <string name="deletenote">Voulez-vous supprimer la note ? ( clic court pour modifier )</string>
+    <string name="deleteimg">Voulez-vous supprimer la note? </string>
+    <string name="checkfield">Merci de vérifier que vous avez complété tous les champs</string>
+    <string name="checkinternet">Erreur. Vérifier votre connexion internet</string>
+    <string name="nopic">Photo non ajoutée - Merci de vérifier que vous avez selectionné une photo</string>
+    <string name="eventdelete">Evènement supprimé</string>
+    <string name="notedelete">Note supprimée</string>
+    <string name="imgdelete">Photo supprimée</string>
+
+</resources>

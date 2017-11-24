@@ -42,12 +42,13 @@ public class AddPictureActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
+        String selectpic = String.valueOf(R.string.selectpic);
         startActivityForResult(Intent.createChooser(intent,
-                "Select Picture"), SELECT_PICTURE);
+                selectpic), SELECT_PICTURE);
 
         /*Ok button*/
         okButton = (Button) findViewById(R.id.okbutton);
-        okButton.setText("OK");
+        okButton.setText(R.string.ok_string);
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                     PostEventDAO postsEventDAO = new PostEventDAO(getApplicationContext());
@@ -56,7 +57,7 @@ public class AddPictureActivity extends AppCompatActivity {
                         if (byteArray != null) {
                             postsEventDAO.updatePostEventPic(byteArray, idPostEvent);
                         }else{
-                            Toast.makeText(getBaseContext(),"No picture added - make sure to add one",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(),R.string.nopic,Toast.LENGTH_LONG).show();
                         }
                     }
                     Intent intent = new Intent(AddPictureActivity.this, NoteAndPictureActivity.class);
@@ -69,7 +70,7 @@ public class AddPictureActivity extends AppCompatActivity {
 
         /*Back button*/
         backButton = (Button) findViewById(R.id.backbutton);
-        backButton.setText("Back");
+        backButton.setText(R.string.back_string);
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(AddPictureActivity.this, NoteAndPictureActivity.class);

@@ -50,7 +50,7 @@ public class NoteAndPictureActivity extends AppCompatActivity {
 
         /*Back button*/
         backButton = (Button) findViewById(R.id.backbutton);
-        backButton.setText("Back");
+        backButton.setText(R.string.back_string);
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(NoteAndPictureActivity.this, PostEventsView.class);
@@ -78,10 +78,10 @@ public class NoteAndPictureActivity extends AppCompatActivity {
                 image = myCursor.getBlob(myCursor.getColumnIndex(EVENT_PICTURES));
             }
         }
-        textBlocTitle.setText("Event : " + name);
+        textBlocTitle.setText(R.string.eventcln + name);
 
         if (note == null){        //If there is no note
-            textBlocAddNote.setText("Add note");
+            textBlocAddNote.setText(R.string.addnote);
 
             textBlocAddNote.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -118,7 +118,7 @@ public class NoteAndPictureActivity extends AppCompatActivity {
 
         /*If there is no picture*/
         if (image == null || BitmapFactory.decodeByteArray(image, 0, image.length) == null){
-            textPicture.setText("Add Picture");
+            textPicture.setText(R.string.addpicture);
             textBlocAddPictures.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(NoteAndPictureActivity.this, AddPictureActivity.class);
@@ -161,23 +161,23 @@ public class NoteAndPictureActivity extends AppCompatActivity {
     private boolean deleteConfirmation(final int id)
     {
         AlertDialog mDialogBox = new AlertDialog.Builder(this)
-                .setTitle("Delete")
-                .setMessage("Do you want to delete the note ? ( short click to modify it )")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setTitle(R.string.delete)
+                .setMessage(R.string.deletenote)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         postsEventDAO = new PostEventDAO(getApplicationContext());
                         postsEventDAO.open();
                         postsEventDAO.deletePostEventNote(id);
-                        textBlocAddNote.setText("Add note");
+                        textBlocAddNote.setText(R.string.addnote);
                         noteChanged[0]= true;   //On refreshing the page
                         finish();
                         startActivity(getIntent());
                         getIntent().putExtra("idFromPostEvent", idPostEvent);
-                        Toast.makeText(NoteAndPictureActivity.this, "Note Deleted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NoteAndPictureActivity.this, R.string.notedelete, Toast.LENGTH_SHORT).show();
 
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         noteChanged[0]= false;
                         dialog.dismiss();
@@ -191,9 +191,9 @@ public class NoteAndPictureActivity extends AppCompatActivity {
     /*Delete image confirmation*/
     private void deleteImageConfirmation(final int id) {
         AlertDialog mDialogBox = new AlertDialog.Builder(this)
-                .setTitle("Delete")
-                .setMessage("Do you want to delete the image ? ")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setTitle(R.string.delete)
+                .setMessage(R.string.deleteimg)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         postsEventDAO = new PostEventDAO(getApplicationContext());
                         postsEventDAO.open();
@@ -201,11 +201,11 @@ public class NoteAndPictureActivity extends AppCompatActivity {
                         finish();
                         startActivity(getIntent());
                         getIntent().putExtra("idFromPostEvent", idPostEvent);
-                        Toast.makeText(NoteAndPictureActivity.this, "Image Deleted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NoteAndPictureActivity.this, R.string.imgdelete, Toast.LENGTH_SHORT).show();
 
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }

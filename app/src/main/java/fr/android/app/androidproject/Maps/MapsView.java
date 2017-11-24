@@ -105,12 +105,12 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
         if (isNetworkAvailable()) {
             mapFragment.getMapAsync(this);
         } else {
-            Toast.makeText(this, "Error occured. Check your internet connection", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.checkinternet, Toast.LENGTH_SHORT).show();
         }
 
         /*Building text and spinner*/
         buildingText = (TextView) findViewById(R.id.buildingtext);
-        buildingText.setText("Choose a building :");
+        buildingText.setText(R.string.choosebuilding);
         buildingChoice = (Spinner) findViewById(R.id.building);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
@@ -150,7 +150,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
 
         /*Search button*/
         searchButton = (Button) findViewById(R.id.searchbutton);
-        searchButton.setText("search");
+        searchButton.setText(R.string.search);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {

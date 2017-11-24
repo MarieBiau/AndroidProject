@@ -13,4 +13,34 @@
     <string name="ok_string">ok</string>
     <string name="back_string">back</string>
     <string name="plus_string">+</string>
+
+    <string name="gomap">Go to maps</string>
+    <string name="goevent">Go to events</string>
+    <string name="gopostevent">Go to postevents</string>
+    <string name="choosebuilding">Choose a building :</string>
+    <string name="search">Search</string>
+    <string name="eventcln">Event :</string>
+    <string name="addnote">Add note</string>
+    <string name="addpicture">Add picture</string>
+
+    <string name="addnotehint">Add your note here</string>
+    <string name="eventnamehint">Event name</string>
+    <string name="eventdatehint">Event date</string>
+    <string name="eventlochint">Event location</string>
+    <string name="seemaphint">See on map</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="delete">delete</string>
+    <string name="selectpic">Select Picture</string>
+    <string name="deleteevent">Do you want to Delete the event </string>
+    <string name="deletenote">Do you want to delete the note ? ( short click to modify it )</string>
+    <string name="deleteimg">Do you want to delete the image ? </string>
+    <string name="checkfield">Please check if all fields are completed</string>
+    <string name="checkinternet">Error occurred. Check your internet connection</string>
+    <string name="nopic">No picture added - make sure to add one</string>
+    <string name="eventdelete">Event deleted</string>
+    <string name="notedelete">Note deleted</string>
+    <string name="imgdelete">Picture deleted</string>
+
 </resources>

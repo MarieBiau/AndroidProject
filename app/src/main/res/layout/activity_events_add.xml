@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Event name"
+            android:hint="@string/eventnamehint"
             android:inputType="textNoSuggestions"
             android:background="@null"/>
 
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Event date"
+            android:hint="@string/eventdatehint"
             android:focusable="false"
             android:clickable="true"
             android:longClickable="false"
@@ -51,7 +51,7 @@
                 android:gravity="center"
                 android:layout_marginRight="15dp"
                 android:layout_marginEnd="15dp"
-                android:text="Event location"
+                android:text="@string/eventlochint"
                 android:textSize="18sp"/>
 
             <Spinner

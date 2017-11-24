@@ -32,7 +32,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
         /*Ok button*/
         okButton = (Button) findViewById(R.id.okbutton);
-        okButton.setText("OK");
+        okButton.setText(R.string.ok_string);
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if ( editTextNote.getText().toString().trim().length() != 0 ) {
@@ -47,14 +47,14 @@ public class AddNoteActivity extends AppCompatActivity {
                     }
                     startActivity(intent);
                 }else{
-                    Toast.makeText(getBaseContext(),"Please check if all fields are completed",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),R.string.checkfield,Toast.LENGTH_LONG).show();
                 }
             }
         });
 
         /*Back button*/
         backButton = (Button) findViewById(R.id.backbutton);
-        backButton.setText("Back");
+        backButton.setText(R.string.back_string);
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(AddNoteActivity.this, NoteAndPictureActivity.class);
