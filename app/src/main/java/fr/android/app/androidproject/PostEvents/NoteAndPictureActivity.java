@@ -78,7 +78,8 @@ public class NoteAndPictureActivity extends AppCompatActivity {
                 image = myCursor.getBlob(myCursor.getColumnIndex(EVENT_PICTURES));
             }
         }
-        textBlocTitle.setText(R.string.eventcln + name);
+        String message = getApplicationContext().getString(R.string.eventcln);
+        textBlocTitle.setText(message + " " + name);
 
         if (note == null){        //If there is no note
             textBlocAddNote.setText(R.string.addnote);
