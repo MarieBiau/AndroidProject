@@ -34,7 +34,7 @@
     <string name="no">Non</string>
     <string name="delete">Supprimer</string>
     <string name="selectpic">Choisir une photo</string>
-    <string name="deleteevent">Voulez-vous supprimer l\'évènement ?</string>
+    <string name="deleteevent">Voulez-vous supprimer l\'évènement </string>
     <string name="deletenote">Voulez-vous supprimer la note ? (clic court pour modifier)</string>
     <string name="deleteimg">Voulez-vous supprimer la note ? </string>
     <string name="checkfield">Merci de vérifier que vous avez complété tous les champs</string>

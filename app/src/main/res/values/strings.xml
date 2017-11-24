@@ -34,7 +34,7 @@
     <string name="delete">delete</string>
     <string name="selectpic">Select Picture</string>
     <string name="deleteevent">Do you want to Delete the event </string>
-    <string name="deletenote">Do you want to delete the note ? ( short click to modify it )</string>
+    <string name="deletenote">Do you want to delete the note ? (short click to modify it)</string>
     <string name="deleteimg">Do you want to delete the image ? </string>
     <string name="checkfield">Please check if all fields are completed</string>
     <string name="checkinternet">Error occurred. Check your internet connection</string>

@@ -71,9 +71,10 @@ public class PostEventsView extends ListActivity {
     /*Delete events confirmation*/
     private void deleteConfirmation(final int id, String name)
     {
+        String message = getApplicationContext().getString(R.string.deleteevent);
         AlertDialog mDialogBox = new AlertDialog.Builder(this)
                 .setTitle(R.string.delete)
-                .setMessage(R.string.deleteevent + name + "?")
+                .setMessage(message + " " + name + "?")
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         postEventDAO.deletePostEvent(id);
