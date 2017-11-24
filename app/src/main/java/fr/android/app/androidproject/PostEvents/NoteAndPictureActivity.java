@@ -188,6 +188,7 @@ public class NoteAndPictureActivity extends AppCompatActivity {
         return noteChanged[0];
     }
 
+    /*Delete image confirmation*/
     private void deleteImageConfirmation(final int id) {
         AlertDialog mDialogBox = new AlertDialog.Builder(this)
                 .setTitle("Delete")
